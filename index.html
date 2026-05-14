@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>frontend.journey() — 4 месяца до джуна</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* Manrope — поддерживает кириллицу и латиницу, JetBrains Mono — тоже */
+    :root {
+      --bg: #07080d;
+      --s1: #0c0e1a;
+      --s2: #111427;
+      --border: #181c30;
+      --border-2: #232843;
+      --accent: #f59e0b;
+      --accent-dim: rgba(245,158,11,.12);
+      --accent-glow: rgba(245,158,11,.25);
+      --sky: #38bdf8;
+      --green: #34d399;
+      --purple: #a78bfa;
+      --text: #dce2f2;
+      --muted: #606880;
+      --dim: #282e48;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── HEADER ── */
+    .header {
+      padding: 64px 0 44px;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp .4s ease both;
+    }
+
+    .header-top {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 28px; flex-wrap: wrap;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; color: var(--accent);
+      letter-spacing: .05em; margin-bottom: 16px; opacity: .85;
+    }
+
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(38px, 6vw, 62px);
+      font-weight: 800; line-height: 1.05; letter-spacing: -.03em;
+    }
+
+    h1 em { color: var(--accent); font-style: normal; }
+
+    .tagline {
+      margin-top: 16px; color: var(--muted);
+      font-size: 15px; font-weight: 400; max-width: 440px;
+    }
+
+    /* ── RING ── */
+    .ring-wrap {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 10px; flex-shrink: 0;
+    }
+
+    .ring-svg-wrap { position: relative; width: 126px; height: 126px; }
+    .ring-svg-wrap svg { transform: rotate(-90deg); }
+    .ring-track { fill: none; stroke: var(--border-2); stroke-width: 8; }
+    .ring-fill {
+      fill: none; stroke: var(--accent); stroke-width: 8; stroke-linecap: round;
+      transition: stroke-dashoffset .7s cubic-bezier(.4,0,.2,1);
+    }
+    .ring-center {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .ring-pct { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 28px; }
+    .ring-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .07em;
+    }
+    .ring-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--muted); text-align: center;
+    }
+
+    /* ── STATS ── */
+    .stats-bar {
+      display: flex; gap: 40px; margin-top: 40px; padding-top: 28px;
+      border-top: 1px solid var(--border); flex-wrap: wrap; align-items: flex-end;
+      animation: fadeUp .4s .08s ease both;
+    }
+
+    .stat-value {
+      font-family: 'Manrope', sans-serif;
+      font-size: 28px; font-weight: 800;
+    }
+    .stat-value b { color: var(--accent); }
+    .stat-value span { color: var(--muted); font-size: 18px; font-weight: 500; }
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .09em; margin-top: 2px;
+    }
+
+    .reset-btn {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+      background: transparent; border: 1px solid var(--border-2); border-radius: 5px;
+      padding: 7px 15px; cursor: pointer; transition: all .15s; margin-left: auto;
+    }
+    .reset-btn:hover { color: #ef4444; border-color: rgba(239,68,68,.4); }
+
+    /* ── MAIN ── */
+    main { padding: 56px 0 90px; }
+
+    /* ── MONTH ── */
+    .month { margin-bottom: 68px; animation: fadeUp .35s ease both; }
+    .month:nth-child(1){animation-delay:.06s}
+    .month:nth-child(2){animation-delay:.12s}
+    .month:nth-child(3){animation-delay:.17s}
+    .month:nth-child(4){animation-delay:.22s}
+
+    .month-header {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 22px; flex-wrap: wrap;
+    }
+
+    .month-badge {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+      color: var(--accent); background: var(--accent-dim);
+      border: 1px solid var(--accent-glow); padding: 5px 12px;
+      border-radius: 5px; letter-spacing: .07em; white-space: nowrap;
+    }
+
+    .month-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 21px; font-weight: 800;
+    }
+
+    .month-prog { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+
+    .bar-track {
+      width: 120px; height: 4px;
+      background: var(--border-2); border-radius: 2px; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; background: linear-gradient(90deg, var(--accent), #fbbf24);
+      border-radius: 2px; transition: width .5s cubic-bezier(.4,0,.2,1);
+    }
+    .bar-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; color: var(--muted); min-width: 36px;
+    }
+
+    /* ── GRID ── */
+    .weeks-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    @media (max-width: 660px) { .weeks-grid { grid-template-columns: 1fr; } }
+
+    /* ── WEEK CARD ── */
+    .week-card {
+      background: var(--s1); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; transition: border-color .2s;
+    }
+    .week-card:hover { border-color: var(--border-2); }
+    .week-card.complete {
+      border-color: rgba(52,211,153,.3);
+      background: linear-gradient(135deg, var(--s1) 0%, rgba(52,211,153,.04) 100%);
+    }
+    .week-card.complete .wk-num { color: var(--green); }
+
+    .week-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 17px; cursor: pointer; user-select: none; transition: background .15s;
+    }
+    .week-header:hover { background: var(--s2); }
+
+    .wk-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0;
+    }
+    .wk-titles { flex: 1; min-width: 0; }
+    .wk-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.35; }
+    .wk-sub { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+
+    .wk-prog { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+    .mini-track { width: 48px; height: 3px; background: var(--dim); border-radius: 2px; overflow: hidden; }
+    .mini-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .3s; }
+    .mini-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--muted); min-width: 30px;
+    }
+
+    .chevron { color: var(--dim); transition: transform .25s; flex-shrink: 0; font-size: 11px; }
+    .week-card.open .chevron { transform: rotate(180deg); }
+
+    /* ── WEEK BODY ── */
+    .week-body { display: none; padding: 0 17px 17px; border-top: 1px solid var(--border); }
+    .week-card.open .week-body { display: block; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .1em; margin: 16px 0 9px;
+    }
+
+    /* task */
+    .task-item {
+      display: flex; align-items: flex-start; gap: 11px;
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+    }
+    .task-item:last-child { border-bottom: none; }
+
+    .cb {
+      appearance: none; -webkit-appearance: none;
+      width: 18px; height: 18px; border: 1.5px solid var(--border-2);
+      border-radius: 5px; background: transparent; cursor: pointer;
+      flex-shrink: 0; margin-top: 3px; transition: all .15s; position: relative;
+    }
+    .cb:hover { border-color: var(--accent); }
+    .cb:checked { background: var(--accent); border-color: var(--accent); }
+    .cb:checked::after {
+      content: '✓'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      color: #07080d; font-size: 11px; font-weight: 700; line-height: 1;
+    }
+
+    .task-lbl {
+      font-size: 13.5px; color: var(--text); cursor: pointer;
+      transition: color .15s; line-height: 1.6; font-weight: 400;
+    }
+    .task-item.done .task-lbl {
+      color: var(--muted);
+      text-decoration: line-through;
+      text-decoration-color: var(--dim);
+    }
+
+    /* resources */
+    .res-list { display: flex; flex-wrap: wrap; gap: 7px; }
+    .res-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      color: var(--sky); background: rgba(56,189,248,.07);
+      border: 1px solid rgba(56,189,248,.18); border-radius: 5px;
+      padding: 5px 11px; text-decoration: none; transition: all .15s;
+    }
+    .res-link:hover { background: rgba(56,189,248,.14); border-color: rgba(56,189,248,.35); }
+
+    /* notes */
+    .notes-ta {
+      width: 100%; min-height: 60px; background: var(--s2);
+      border: 1px solid var(--border); border-radius: 7px; color: var(--text);
+      font-family: 'Manrope', sans-serif; font-size: 13px;
+      padding: 10px 13px; resize: vertical; outline: none; transition: border-color .15s;
+      line-height: 1.6;
+    }
+    .notes-ta::placeholder { color: var(--dim); }
+    .notes-ta:focus { border-color: var(--accent-glow); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 32px 0 56px; }
+    .footer-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-txt {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; color: var(--muted);
+    }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-a {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      color: var(--accent); text-decoration: none; opacity: .8; transition: opacity .15s;
+    }
+    .footer-a:hover { opacity: 1; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="header-top">
+      <div>
+        <div class="logo">// frontend.journey.js — start()</div>
+        <h1>4 месяца<br>до <em>джуна</em></h1>
+        <p class="tagline">
+          HTML → CSS → JS → React + TypeScript → тесты → доступность → работа 🇵🇱<br>
+          Чекбоксы сохраняются в браузере автоматически — закрывай спокойно.
+        </p>
+      </div>
+      <div class="ring-wrap">
+        <div class="ring-svg-wrap">
+          <svg width="126" height="126" viewBox="0 0 126 126">
+            <circle class="ring-track" cx="63" cy="63" r="52"/>
+            <circle class="ring-fill" id="ringFill" cx="63" cy="63" r="52"
+              stroke-dasharray="326.7" stroke-dashoffset="326.7"/>
+          </svg>
+          <div class="ring-center">
+            <div class="ring-pct" id="ringPct">0%</div>
+            <div class="ring-lbl">выполнено</div>
+          </div>
+        </div>
+        <div class="ring-sub" id="ringSub">0 / 0 задач</div>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div>
+        <div class="stat-value"><b id="stWeeks">0</b><span>/16</span></div>
+        <div class="stat-label">Недель пройдено</div>
+      </div>
+      <div>
+        <div class="stat-value"><b id="stTasks">0</b></div>
+        <div class="stat-label">Задач сделано</div>
+      </div>
+      <div>
+        <div class="stat-value"><b id="stMonth">1</b><span>/4</span></div>
+        <div class="stat-label">Текущий месяц</div>
+      </div>
+      <button class="reset-btn" onclick="resetAll()">↺ сбросить прогресс</button>
+    </div>
+  </header>
+
+  <main id="main"></main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-txt">// push → deploy → ship it 🚀</div>
+      <div class="footer-links">
+        <a class="footer-a" href="https://javascript.info" target="_blank">javascript.info</a>
+        <a class="footer-a" href="https://react.dev" target="_blank">react.dev</a>
+        <a class="footer-a" href="https://developer.mozilla.org" target="_blank">MDN</a>
+        <a class="footer-a" href="https://frontendmentor.io" target="_blank">Frontend Mentor</a>
+        <a class="footer-a" href="https://justjoin.it" target="_blank">Just Join IT</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+const ROADMAP = [
+  // ════════════════════════════════════════════════════
+  // МЕСЯЦ 1 — HTML + CSS фундамент
+  // ════════════════════════════════════════════════════
+  {
+    month: 1,
+    title: "HTML + CSS — настоящий фундамент",
+    weeks: [
+      {
+        week: 1,
+        title: "Как работает веб + семантический HTML",
+        sub: "Понять среду прежде чем в ней работать",
+        tasks: [
+          "Посмотреть видео: что происходит когда вводишь адрес в браузере — DNS → HTTP запрос → сервер → браузер рендерит страницу",
+          "HTTP статус коды которые встретишь везде: 200 OK, 301 редирект, 404 не найдено, 500 ошибка сервера",
+          "Разобрать семантические теги: header, nav, main, section, article, aside, footer — зачем каждый и где использовать",
+          "Пройти freeCodeCamp: Responsive Web Design — первые 2 блока",
+          "Написать страницу «обо мне» чистым HTML без CSS — структура важнее красоты на этом этапе",
+          "Продолжить плейлист по верстке на YouTube — видео 1–2 (тот что уже смотришь ✓)"
+        ],
+        res: [
+          { l: "MDN: How the web works", u: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works" },
+          { l: "MDN: Learn HTML", u: "https://developer.mozilla.org/en-US/docs/Learn/HTML" },
+          { l: "freeCodeCamp: Responsive Web Design", u: "https://www.freecodecamp.org/learn/2022/responsive-web-design/" }
+        ]
+      },
+      {
+        week: 2,
+        title: "CSS: cascade, specificity, inheritance",
+        sub: "То без чего CSS кажется непредсказуемой магией",
+        tasks: [
+          "Inheritance (наследование): какие свойства дети берут у родителя автоматически — color, font-size, line-height. Какие нет — margin, padding, border",
+          "Cascade (каскад): браузер применяет стили в определённом порядке — browser defaults → author styles → inline styles",
+          "Specificity (специфичность): почему #id бьёт .class, а .class бьёт тег. Считается как 3 числа: 1-0-0 / 0-1-0 / 0-0-1",
+          "Box model: content → padding → border → margin — потрогать руками в DevTools (вкладка Elements → Computed)",
+          "DevTools: открыть вкладку Elements, кликнуть на элемент и смотреть в Styles — откуда берётся каждый стиль, что перебито (зачёркнуто)",
+          "ПРАКТИКА: намеренно создать конфликт стилей и разобраться в DevTools почему один побеждает другой"
+        ],
+        res: [
+          { l: "MDN: Cascade and inheritance", u: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance" },
+          { l: "Specifishity (визуально)", u: "https://specifishity.com/" },
+          { l: "Chrome DevTools: CSS вкладка", u: "https://developer.chrome.com/docs/devtools/css/" }
+        ]
+      },
+      {
+        week: 3,
+        title: "Flexbox + CSS Grid",
+        sub: "Два инструмента которые решают 90% задач по раскладке",
+        tasks: [
+          "Пройти Flexbox Froggy целиком — все 24 уровня 🐸",
+          "Пройти CSS Grid Garden целиком — все 28 уровней 🥕",
+          "Понять разницу: flexbox = одна ось (строка ИЛИ колонка), grid = две оси одновременно",
+          "Сверстать: 3 карточки товара в ряд с gap через flexbox",
+          "Сверстать: лейаут страницы с шапкой, сайдбаром, контентом и футером через Grid",
+          "Включить grid/flex overlay в DevTools и посмотреть как браузер видит раскладку"
+        ],
+        res: [
+          { l: "Flexbox Froggy 🐸", u: "https://flexboxfroggy.com/" },
+          { l: "CSS Grid Garden 🥕", u: "https://cssgridgarden.com/" },
+          { l: "CSS-Tricks: Flexbox Guide", u: "https://css-tricks.com/snippets/css/a-guide-to-flexbox/" },
+          { l: "CSS-Tricks: Grid Guide", u: "https://css-tricks.com/snippets/css/complete-guide-grid/" },
+          { l: "Kevin Powell YouTube", u: "https://www.youtube.com/@KevinPowell" }
+        ]
+      },
+      {
+        week: 4,
+        title: "Адаптивность + BEM + переменные + анимации + деплой",
+        sub: "Первый живой проект в интернете",
+        tasks: [
+          "Mobile-first: пишем стили для мобильного, потом через @media расширяем — это правильный порядок",
+          "Три ключевых брейкпоинта: 375px (телефон), 768px (планшет), 1200px (десктоп)",
+          "CSS custom properties (переменные): --color-primary: #f59e0b и переключение тёмной/светлой темы",
+          "BEM методология именования: .card (block), .card__title (element), .card--featured (modifier)",
+          "transition + animation + @keyframes: сделать минимум 3 разных hover-эффекта",
+          "pseudo-elements ::before и ::after — декоративные элементы без лишних тегов в HTML",
+          "ПРОЕКТ: одностраничный лендинг — задеплоить на GitHub Pages 🚀"
+        ],
+        res: [
+          { l: "BEM.info: введение", u: "https://getbem.com/introduction/" },
+          { l: "Kevin Powell: Responsive design", u: "https://www.youtube.com/watch?v=bn-DQznj10M" },
+          { l: "Animista: генератор анимаций", u: "https://animista.net/" },
+          { l: "GitHub Pages", u: "https://pages.github.com/" }
+        ]
+      }
+    ]
+  },
+
+  // ════════════════════════════════════════════════════
+  // МЕСЯЦ 2 — JavaScript
+  // ════════════════════════════════════════════════════
+  {
+    month: 2,
+    title: "JavaScript — язык браузера",
+    weeks: [
+      {
+        week: 5,
+        title: "JS основы + scope + closure",
+        sub: "Фундамент без которого React хуки не поймёшь",
+        tasks: [
+          "var vs let vs const — реальная разница: hoisting, temporal dead zone, переопределение",
+          "Scope: глобальный → функциональный → блочный — где живёт переменная и почему это важно",
+          "Closure (замыкание): функция «запоминает» переменные из места где она была создана. Это основа useState и useEffect в React",
+          "DOM: querySelector / querySelectorAll, textContent, innerHTML, classList.add/remove/toggle/contains",
+          "Events: addEventListener('click'), event.preventDefault(), event.target",
+          "ПРАКТИКА: счётчик с кнопками +/− и кнопкой сброса",
+          "ПРАКТИКА: форма с валидацией — показывать сообщение об ошибке если поле пустое"
+        ],
+        res: [
+          { l: "javascript.info: начало", u: "https://javascript.info/first-steps" },
+          { l: "javascript.info: Closure", u: "https://javascript.info/closure" },
+          { l: "Web Dev Simplified YouTube", u: "https://www.youtube.com/@WebDevSimplified" },
+          { l: "MDN: Events", u: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events" }
+        ]
+      },
+      {
+        week: 6,
+        title: "Массивы, объекты, ES6+ синтаксис",
+        sub: "Современный JavaScript которым пишут все",
+        tasks: [
+          "Методы массивов — по одному примеру каждого, не просто прочитать: map(), filter(), reduce(), forEach(), find(), some(), every(), flat(), flatMap()",
+          "Объекты: создание, доступ, перебор через Object.keys() / Object.values() / Object.entries()",
+          "Деструктуризация объектов: const { name, age } = user и массивов: const [first, ...rest] = arr",
+          "Spread (...) и rest (...args) оператор — скопировать, смерджить, передать",
+          "Optional chaining (?.) и nullish coalescing (??) — защита от undefined без длинных if",
+          "Короткозаписные функции: arrow functions и разница в this",
+          "ПРАКТИКА: To-Do List — добавить задачу, удалить, отметить выполненной",
+          "Сохранить список в localStorage чтобы не пропадал при перезагрузке"
+        ],
+        res: [
+          { l: "javascript.info: Array methods", u: "https://javascript.info/array-methods" },
+          { l: "javascript.info: Destructuring", u: "https://javascript.info/destructuring-assignment" },
+          { l: "JavaScript30 — 30 проектов бесплатно", u: "https://javascript30.com/" },
+          { l: "MDN: Optional chaining", u: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining" }
+        ]
+      },
+      {
+        week: 7,
+        title: "Async JS + HTTP + работа с API",
+        sub: "Загружаем реальные данные из интернета",
+        tasks: [
+          "HTTP методы: GET (получить данные), POST (отправить), PUT/PATCH (обновить), DELETE (удалить)",
+          "JSON: что такое, как парсить JSON.parse() и сериализовать JSON.stringify()",
+          "Promise: концепция .then().catch().finally() — что такое цепочка промисов",
+          "async/await: современный читаемый способ, try/catch для обработки ошибок",
+          "fetch(): GET запрос → ждём ответ → .json() → используем данные",
+          "DevTools: вкладка Network — смотреть запросы, статус коды, время ответа, payload",
+          "ПРАКТИКА: приложение погоды (OpenWeatherMap) или поиск фильмов (OMDB API)"
+        ],
+        res: [
+          { l: "javascript.info: async/await", u: "https://javascript.info/async-await" },
+          { l: "javascript.info: Fetch", u: "https://javascript.info/fetch" },
+          { l: "JSONPlaceholder (тестовый API)", u: "https://jsonplaceholder.typicode.com/" },
+          { l: "OpenWeatherMap API", u: "https://openweathermap.org/api" },
+          { l: "OMDB API (фильмы)", u: "https://www.omdbapi.com/" }
+        ]
+      },
+      {
+        week: 8,
+        title: "Git + DevTools: дебаггинг + инструменты разработчика",
+        sub: "Рабочий процесс который используют все команды",
+        tasks: [
+          "Git: init, add, commit, push, pull — делать коммиты каждый день, это войдёт в привычку",
+          "Ветки: git branch feature/todo, checkout, merge — работать в ветках как в настоящей команде",
+          "DevTools Sources/Debugger: ставить breakpoints, пошагово идти по коду, смотреть значения переменных — это меняет всё",
+          "DevTools Console: читать stack trace ошибок, не пугаться красного текста",
+          "npm: package.json, зависимости, npm install, npm run dev",
+          "Vite: создать проект — npm create vite@latest — и запустить локально",
+          "Задеплоить To-Do List на GitHub Pages + написать README с описанием 🏆"
+        ],
+        res: [
+          { l: "Git Handbook", u: "https://guides.github.com/introduction/git-handbook/" },
+          { l: "Chrome DevTools: Debugger", u: "https://developer.chrome.com/docs/devtools/javascript/" },
+          { l: "Vite: Getting Started", u: "https://vitejs.dev/guide/" },
+          { l: "GitHub: написать хороший README", u: "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" }
+        ]
+      }
+    ]
+  },
+
+  // ════════════════════════════════════════════════════
+  // МЕСЯЦ 3 — React + TypeScript
+  // ════════════════════════════════════════════════════
+  {
+    month: 3,
+    title: "React + TypeScript — современный стек",
+    weeks: [
+      {
+        week: 9,
+        title: "React: компоненты, props, useState",
+        sub: "Учимся думать компонентами",
+        tasks: [
+          "Зачем React: что он решает, чего не хватает в ванильном JS при разработке сложных интерфейсов",
+          "JSX: синтаксис, правила, главные отличия от HTML — className вместо class, camelCase для атрибутов",
+          "Props: передача данных вниз по дереву компонентов. Компонент = функция с параметрами",
+          "useState: счётчик, инпут, переключатель видимости — три базовых кейса",
+          "Controlled components: value={state} + onChange={handler} — основа всех форм в React",
+          "Продолжить плейлист по React (у тебя уже 4 видео — отличный старт! 🎉)",
+          "ПРАКТИКА: форма с инпутом, вывод результата ниже в реальном времени"
+        ],
+        res: [
+          { l: "React docs: react.dev/learn", u: "https://react.dev/learn" },
+          { l: "Твой плейлист по React", u: "https://www.youtube.com/playlist?list=PL0MUAHwery4omH4GyVQ-lI2R326tOdN7A" },
+          { l: "Курс Stepik (если берёшь)", u: "https://stepik.org/course/228315/promo" }
+        ]
+      },
+      {
+        week: 10,
+        title: "TypeScript — прямо сейчас, параллельно с React",
+        sub: "Все вакансии джуна в Польше требуют TS. Лучше начать сразу",
+        tasks: [
+          "Зачем TypeScript: ошибки видно до запуска, IDE умнее подсказывает, код читается легче",
+          "Примитивные типы: string, number, boolean, null, undefined, any (стараемся избегать any!)",
+          "Массивы и объекты: string[], number[], { name: string; age: number }",
+          "interface vs type: оба описывают форму объекта, разница в деталях — использовать что нравится",
+          "React + TypeScript: типизировать props через interface, FC<Props>",
+          "useState с явным типом: useState<string>(''), useState<Todo[]>([])",
+          "Переписать компоненты из прошлой недели добавив типы"
+        ],
+        res: [
+          { l: "TypeScript Handbook", u: "https://www.typescriptlang.org/docs/handbook/intro.html" },
+          { l: "TypeScript in React (react.dev)", u: "https://react.dev/learn/typescript" },
+          { l: "TS Playground (попробовать онлайн)", u: "https://www.typescriptlang.org/play" },
+          { l: "Total TypeScript (бесплатные уроки)", u: "https://www.totaltypescript.com/tutorials" }
+        ]
+      },
+      {
+        week: 11,
+        title: "useEffect + API в React + React Router",
+        sub: "Загружаем данные и делаем многостраничное приложение",
+        tasks: [
+          "useEffect: что такое side effect, жизненный цикл компонента — mount / update / unmount",
+          "Dependency array: [] = один раз при монтировании, [val] = при изменении val, без [] = каждый рендер",
+          "fetch() внутри useEffect: загрузка данных + состояния loading и error",
+          "Conditional rendering: тернарный оператор, оператор &&, ранний return",
+          "Списки через .map() в JSX + key prop — почему нельзя просто ставить index",
+          "React Router v6: BrowserRouter, Routes, Route, Link, NavLink, useParams для динамических маршрутов",
+          "ПРАКТИКА: приложение с 3+ страницами — список, детальная страница через :id, о нас"
+        ],
+        res: [
+          { l: "React: useEffect", u: "https://react.dev/reference/react/useEffect" },
+          { l: "React: Rendering Lists", u: "https://react.dev/learn/rendering-lists" },
+          { l: "React Router v6 docs", u: "https://reactrouter.com/en/main" }
+        ]
+      },
+      {
+        week: 12,
+        title: "Tailwind CSS + Context + custom hooks + проект",
+        sub: "Всё вместе — полноценное приложение",
+        tasks: [
+          "Tailwind CSS: установить в Vite+React, освоить flex, grid, padding/margin утилиты, цвета, тени",
+          "Responsive в Tailwind: sm: md: lg: префиксы вместо media queries",
+          "useContext: глобальное состояние без пропов — тема, язык, авторизованный пользователь",
+          "Zustand (бонус): простой стейт-менеджер который реально используют на работе",
+          "Custom hook: написать useFetch(url) который возвращает { data, loading, error }",
+          "useCallback и useMemo: когда и зачем (не везде, только при реальных проблемах)",
+          "ПРОЕКТ: полноценное приложение React + TS + Tailwind + внешний API + роутинг → деплой на Vercel 🚀"
+        ],
+        res: [
+          { l: "Tailwind + Vite setup", u: "https://tailwindcss.com/docs/guides/vite" },
+          { l: "Zustand: начало", u: "https://zustand-demo.pmnd.rs/" },
+          { l: "React: useContext", u: "https://react.dev/reference/react/useContext" },
+          { l: "Vercel (деплой за 2 минуты)", u: "https://vercel.com/" }
+        ]
+      }
+    ]
+  },
+
+  // ════════════════════════════════════════════════════
+  // МЕСЯЦ 4 — Качество + проекты + работа
+  // ════════════════════════════════════════════════════
+  {
+    month: 4,
+    title: "Качество кода + проекты + работа в Польше",
+    weeks: [
+      {
+        week: 13,
+        title: "Тестирование + качество кода + инструменты",
+        sub: "То что отличает джуна от «просто верстальщика»",
+        tasks: [
+          "Зачем тесты: понять идею без страха — тест это просто «проверь что это работает»",
+          "Jest: describe, it/test, expect, toBe, toEqual, toBeTruthy — написать 5 простых тестов",
+          "React Testing Library: render, screen.getByText, screen.getByRole, fireEvent.click, userEvent",
+          "Написать тесты для 2–3 компонентов из прошлого проекта",
+          "ESLint: установить, настроить, понять что он тебе говорит и почему",
+          "Prettier: автоформатирование кода — поставить хук чтобы форматировался при сохранении",
+          "Прочитать чужой код: найти популярный open source React репозиторий на GitHub и разобраться в структуре папок"
+        ],
+        res: [
+          { l: "Jest: Getting Started", u: "https://jestjs.io/docs/getting-started" },
+          { l: "React Testing Library", u: "https://testing-library.com/docs/react-testing-library/intro/" },
+          { l: "Prettier", u: "https://prettier.io/" },
+          { l: "ESLint: Getting Started", u: "https://eslint.org/docs/latest/use/getting-started" }
+        ]
+      },
+      {
+        week: 14,
+        title: "Accessibility (a11y) + Forms + пет-проект № 1",
+        sub: "Сайты для всех людей + первый проект в портфолио",
+        tasks: [
+          "Что такое доступность (a11y) и почему её спрашивают на интервью в Европе",
+          "Семантика как основа доступности: правильный тег решает половину проблем",
+          "ARIA атрибуты: aria-label, aria-hidden, aria-describedby, role — когда и зачем",
+          "Keyboard navigation: весь сайт должен работать только с Tab, Enter, Escape, стрелками",
+          "Contrast ratio: текст должен быть читаем — проверить свои старые проекты на WebAIM Contrast Checker",
+          "Формы: правильный label для каждого input, fieldset, legend, валидация с понятными сообщениями",
+          "ПЕТ-ПРОЕКТ №1: небольшой, но полностью свой — React + TS + Tailwind, задеплоить на Vercel, README с фото"
+        ],
+        res: [
+          { l: "MDN: Accessibility", u: "https://developer.mozilla.org/en-US/docs/Learn/Accessibility" },
+          { l: "WebAIM Contrast Checker", u: "https://webaim.org/resources/contrastchecker/" },
+          { l: "WAVE: проверить свой сайт", u: "https://wave.webaim.org/" },
+          { l: "Frontend Mentor (готовые макеты)", u: "https://www.frontendmentor.io/" }
+        ]
+      },
+      {
+        week: 15,
+        title: "Пет-проект № 2 — главный проект портфолио",
+        sub: "Сложнее, красивее, с тестами",
+        tasks: [
+          "Стек: React + TypeScript + Tailwind + внешний API + React Router + базовые тесты",
+          "Минимум 3 страницы: список, детальная страница, ещё одна на выбор",
+          "Полностью адаптивная верстка — mobile first, проверить на реальном телефоне",
+          "Уникальный дизайн — не шаблонный. Потрать время на Coolors и Google Fonts",
+          "Обработка состояний: loading skeleton, пустой список, ошибка загрузки — всё должно быть обработано",
+          "Задеплоить на Vercel, README с описанием + скриншоты + живая ссылка",
+          "Поделиться в LinkedIn — первый шаг к публичности как разработчика 📢"
+        ],
+        res: [
+          { l: "Public APIs (идеи для API)", u: "https://publicapis.dev/" },
+          { l: "Coolors (палитра)", u: "https://coolors.co/" },
+          { l: "Figma (набросать дизайн бесплатно)", u: "https://www.figma.com/" },
+          { l: "Vercel", u: "https://vercel.com/" }
+        ]
+      },
+      {
+        week: 16,
+        title: "Портфолио + подготовка к интервью + поиск работы",
+        sub: "Финишная прямая — отправляем первые отклики 🏁",
+        tasks: [
+          "Портфолио сайт: обо мне, стек, 2–3 проекта с живыми ссылками, контакты и ссылка на CV",
+          "LinkedIn: профессиональное фото, краткое описание на английском, добавить проекты и навыки",
+          "CV на английском: одна страница, стек технологий, два проекта с github+deploy ссылками, образование",
+          "GitHub профиль: закрепить лучшие репозитории, оформить README профиля (есть специальный репо с именем аккаунта)",
+          "Подготовка к интервью: основные вопросы по HTML/CSS/JS/React — порепетировать вслух",
+          "Найти 15–20 вакансий junior frontend в Польше: nofluffjobs.com, justjoin.it, pracuj.pl",
+          "Отправить первые 5–10 откликов — не ждать «идеального момента», его не будет! 🚀"
+        ],
+        res: [
+          { l: "No Fluff Jobs: Junior Frontend PL", u: "https://nofluffjobs.com/pl/frontend" },
+          { l: "Just Join IT", u: "https://justjoin.it/" },
+          { l: "Pracuj.pl", u: "https://www.pracuj.pl/" },
+          { l: "Frontend Interview Questions", u: "https://github.com/h5bp/Front-end-Developer-Interview-Questions" },
+          { l: "LinkedIn", u: "https://linkedin.com" }
+        ]
+      }
+    ]
+  }
+];
+
+// ── STORAGE HELPERS ──
+const KEY      = (m,w,i) => `rm2_m${m}_w${w}_t${i}`;
+const NOTE_KEY = (m,w)   => `rm2_m${m}_w${w}_note`;
+const isChecked = (m,w,i) => localStorage.getItem(KEY(m,w,i)) === '1';
+const setCheck  = (m,w,i,v) => localStorage.setItem(KEY(m,w,i), v ? '1' : '0');
+const getNote   = (m,w) => localStorage.getItem(NOTE_KEY(m,w)) || '';
+const saveNote  = (m,w,v) => localStorage.setItem(NOTE_KEY(m,w), v);
+
+// ── PROGRESS ──
+function countAll() {
+  let total = 0, done = 0, completedWeeks = 0;
+  ROADMAP.forEach(mo => mo.weeks.forEach(wk => {
+    total += wk.tasks.length;
+    const d = wk.tasks.filter((_,i) => isChecked(mo.month, wk.week, i)).length;
+    done += d;
+    if (d === wk.tasks.length) completedWeeks++;
+  }));
+  return { total, done, completedWeeks };
+}
+
+function updateGlobal() {
+  const { total, done, completedWeeks } = countAll();
+  const pct = total ? Math.round(done / total * 100) : 0;
+  const circ = 326.7;
+  document.getElementById('ringFill').style.strokeDashoffset = circ - (pct / 100 * circ);
+  document.getElementById('ringPct').textContent = pct + '%';
+  document.getElementById('ringSub').textContent = `${done} / ${total} задач`;
+  document.getElementById('stWeeks').textContent = completedWeeks;
+  document.getElementById('stTasks').textContent = done;
+
+  let cm = 1;
+  ROADMAP.forEach((mo, idx) => {
+    const t = mo.weeks.reduce((s,w) => s + w.tasks.length, 0);
+    const d = mo.weeks.reduce((s,w) => s + w.tasks.filter((_,i) => isChecked(mo.month, w.week, i)).length, 0);
+    if (d === t && t > 0) cm = Math.min(idx + 2, 4);
+  });
+  document.getElementById('stMonth').textContent = cm;
+}
+
+function updateWeekCard(monthNum, weekNum, tasks) {
+  const card = document.querySelector(`[data-wk="${weekNum}"]`);
+  if (!card) return;
+  const done = tasks.filter((_,i) => isChecked(monthNum, weekNum, i)).length;
+  const pct  = Math.round(done / tasks.length * 100);
+  card.querySelector('.mini-fill').style.width = pct + '%';
+  card.querySelector('.mini-pct').textContent  = pct + '%';
+  card.classList.toggle('complete', done === tasks.length);
+}
+
+function updateMonthBar(monthNum) {
+  const mo  = ROADMAP.find(m => m.month === monthNum);
+  const t   = mo.weeks.reduce((s,w) => s + w.tasks.length, 0);
+  const d   = mo.weeks.reduce((s,w) => s + w.tasks.filter((_,i) => isChecked(mo.month, w.week, i)).length, 0);
+  const pct = Math.round(d / t * 100);
+  const fill = document.querySelector(`[data-mbar="${monthNum}"]`);
+  const lbl  = document.querySelector(`[data-mpct="${monthNum}"]`);
+  if (fill) fill.style.width = pct + '%';
+  if (lbl)  lbl.textContent  = pct + '%';
+}
+
+// ── RENDER ──
+function render() {
+  const main = document.getElementById('main');
+
+  ROADMAP.forEach(mo => {
+    const sec = document.createElement('section');
+    sec.className = 'month';
+    sec.innerHTML = `
+      <div class="month-header">
+        <div class="month-badge">МЕСЯЦ ${mo.month}</div>
+        <div class="month-title">${mo.title}</div>
+        <div class="month-prog">
+          <div class="bar-track">
+            <div class="bar-fill" data-mbar="${mo.month}" style="width:0%"></div>
+          </div>
+          <div class="bar-pct" data-mpct="${mo.month}">0%</div>
+        </div>
+      </div>
+      <div class="weeks-grid" id="mo${mo.month}grid"></div>
+    `;
+    main.appendChild(sec);
+
+    const grid = sec.querySelector(`#mo${mo.month}grid`);
+
+    mo.weeks.forEach(wk => {
+      const initDone = wk.tasks.filter((_,i) => isChecked(mo.month, wk.week, i)).length;
+      const initPct  = Math.round(initDone / wk.tasks.length * 100);
+      const complete = initDone === wk.tasks.length;
+
+      const card = document.createElement('div');
+      card.className = 'week-card' + (complete ? ' complete' : '');
+      card.dataset.wk = wk.week;
+
+      const tasksHTML = wk.tasks.map((t, i) => {
+        const ch = isChecked(mo.month, wk.week, i);
+        return `<div class="task-item${ch ? ' done' : ''}" data-ti>
+          <input type="checkbox" class="cb"
+            data-m="${mo.month}" data-w="${wk.week}" data-i="${i}" ${ch ? 'checked' : ''}>
+          <label class="task-lbl">${t}</label>
+        </div>`;
+      }).join('');
+
+      const resHTML = wk.res.map(r =>
+        `<a class="res-link" href="${r.u}" target="_blank">↗ ${r.l}</a>`
+      ).join('');
+
+      card.innerHTML = `
+        <div class="week-header">
+          <div class="wk-num">НЕД.${String(wk.week).padStart(2,'0')}</div>
+          <div class="wk-titles">
+            <div class="wk-title">${wk.title}</div>
+            <div class="wk-sub">${wk.sub}</div>
+          </div>
+          <div class="wk-prog">
+            <div class="mini-track">
+              <div class="mini-fill" style="width:${initPct}%"></div>
+            </div>
+            <div class="mini-pct">${initPct}%</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="week-body">
+          <div class="section-label">// задачи на неделю</div>
+          ${tasksHTML}
+          <div class="section-label" style="margin-top:16px">// ресурсы</div>
+          <div class="res-list">${resHTML}</div>
+          <div class="section-label" style="margin-top:16px">// заметки</div>
+          <textarea class="notes-ta"
+            placeholder="Что узнала, что было сложно, ссылки, идеи, вопросы..."
+            data-m="${mo.month}" data-w="${wk.week}"
+          >${getNote(mo.month, wk.week)}</textarea>
+        </div>
+      `;
+
+      grid.appendChild(card);
+
+      // toggle open/close
+      card.querySelector('.week-header').addEventListener('click', () => {
+        card.classList.toggle('open');
+      });
+
+      // checkboxes
+      card.querySelectorAll('.cb').forEach(cb => {
+        cb.addEventListener('change', () => {
+          const m = +cb.dataset.m, w = +cb.dataset.w, idx = +cb.dataset.i;
+          setCheck(m, w, idx, cb.checked);
+          cb.closest('[data-ti]').classList.toggle('done', cb.checked);
+          updateWeekCard(m, w, wk.tasks);
+          updateMonthBar(m);
+          updateGlobal();
+        });
+      });
+
+      // notes autosave
+      card.querySelector('.notes-ta').addEventListener('input', e => {
+        saveNote(+e.target.dataset.m, +e.target.dataset.w, e.target.value);
+      });
+    });
+
+    updateMonthBar(mo.month);
+  });
+
+  updateGlobal();
+}
+
+function resetAll() {
+  if (!confirm('Сбросить весь прогресс? Это нельзя отменить.')) return;
+  Object.keys(localStorage)
+    .filter(k => k.startsWith('rm2_'))
+    .forEach(k => localStorage.removeItem(k));
+  location.reload();
+}
+
+render();
+</script>
+</body>
+</html>
