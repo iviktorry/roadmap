@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPAM Prep — 5 дней до интернатуры</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --surface2: #f9f8f5;
+      --border: #e4e2da;
+      --border2: #d4d1c8;
+      --accent: #cc3333;
+      --accent-dim: rgba(204,51,51,.08);
+      --accent-glow: rgba(204,51,51,.2);
+      --sky: #1a6fa8;
+      --green: #1a7a4a;
+      --orange: #c55a00;
+      --purple: #5b3fa6;
+      --text: #1a1a1a;
+      --muted: #6b6860;
+      --dim: #c8c5bc;
+      --tag-bg: #ede9e0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .container { max-width: 1020px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── TOP NAV ── */
+    .topnav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .topnav-inner {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .back-link {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px;
+      transition: color .15s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .nav-badge {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      background: var(--accent); color: white; padding: 3px 10px;
+      border-radius: 20px; letter-spacing: .04em;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp .4s ease both;
+    }
+    .header-top {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; flex-wrap: wrap;
+    }
+    .logo {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      color: var(--accent); letter-spacing: .05em; margin-bottom: 14px; opacity: .9;
+    }
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(34px, 5.5vw, 54px); font-weight: 800;
+      line-height: 1.06; letter-spacing: -.03em;
+    }
+    h1 em { color: var(--accent); font-style: normal; }
+    .tagline {
+      margin-top: 14px; color: var(--muted); font-size: 15px; max-width: 500px;
+    }
+
+    /* ── RING ── */
+    .ring-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0;
+    }
+    .ring-svg-wrap { position: relative; width: 120px; height: 120px; }
+    .ring-svg-wrap svg { transform: rotate(-90deg); }
+    .ring-track { fill: none; stroke: var(--border); stroke-width: 8; }
+    .ring-fill {
+      fill: none; stroke: var(--accent); stroke-width: 8; stroke-linecap: round;
+      transition: stroke-dashoffset .7s cubic-bezier(.4,0,.2,1);
+    }
+    .ring-center {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .ring-pct { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; color: var(--accent); }
+    .ring-lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); text-transform: uppercase; }
+    .ring-sub { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-align: center; }
+
+    /* ── STATS ── */
+    .stats-bar {
+      display: flex; gap: 36px; margin-top: 36px; padding-top: 26px;
+      border-top: 1px solid var(--border); flex-wrap: wrap; align-items: flex-end;
+      animation: fadeUp .4s .08s ease both;
+    }
+    .stat-value { font-family: 'Manrope', sans-serif; font-size: 26px; font-weight: 800; }
+    .stat-value b { color: var(--accent); }
+    .stat-value span { color: var(--muted); font-size: 16px; font-weight: 500; }
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .09em; margin-top: 2px;
+    }
+    .reset-btn {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+      background: transparent; border: 1px solid var(--border2); border-radius: 5px;
+      padding: 7px 14px; cursor: pointer; transition: all .15s; margin-left: auto;
+    }
+    .reset-btn:hover { color: var(--accent); border-color: var(--accent-glow); }
+
+    /* ── REQUIREMENTS BANNER ── */
+    .req-banner {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 4px solid var(--accent); border-radius: 10px;
+      padding: 20px 24px; margin: 40px 0 0;
+    }
+    .req-banner-title {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px;
+    }
+    .req-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .req-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      background: var(--tag-bg); color: var(--text); border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .req-tag.must { background: rgba(204,51,51,.1); border-color: rgba(204,51,51,.25); color: var(--accent); }
+    .req-tag.bonus { background: rgba(91,63,166,.08); border-color: rgba(91,63,166,.2); color: var(--purple); }
+
+    /* ── MAIN ── */
+    main { padding: 48px 0 80px; }
+
+    /* ── DAY ── */
+    .day { margin-bottom: 56px; animation: fadeUp .35s ease both; }
+    .day:nth-child(1){animation-delay:.05s}
+    .day:nth-child(2){animation-delay:.09s}
+    .day:nth-child(3){animation-delay:.13s}
+    .day:nth-child(4){animation-delay:.17s}
+    .day:nth-child(5){animation-delay:.21s}
+
+    .day-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap;
+    }
+    .day-badge {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+      padding: 5px 12px; border-radius: 5px; letter-spacing: .06em; white-space: nowrap;
+    }
+    .day-badge.d1 { background: rgba(204,51,51,.1); color: var(--accent); border: 1px solid rgba(204,51,51,.2); }
+    .day-badge.d2 { background: rgba(26,111,168,.1); color: var(--sky); border: 1px solid rgba(26,111,168,.2); }
+    .day-badge.d3 { background: rgba(197,90,0,.1); color: var(--orange); border: 1px solid rgba(197,90,0,.2); }
+    .day-badge.d4 { background: rgba(91,63,166,.1); color: var(--purple); border: 1px solid rgba(91,63,166,.2); }
+    .day-badge.d5 { background: rgba(26,122,74,.1); color: var(--green); border: 1px solid rgba(26,122,74,.2); }
+
+    .day-title { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; }
+    .day-sub { font-size: 14px; color: var(--muted); font-weight: 400; }
+
+    .day-prog { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+    .bar-track { width: 120px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 2px; transition: width .5s cubic-bezier(.4,0,.2,1); }
+    .bar-fill.d1 { background: var(--accent); }
+    .bar-fill.d2 { background: var(--sky); }
+    .bar-fill.d3 { background: var(--orange); }
+    .bar-fill.d4 { background: var(--purple); }
+    .bar-fill.d5 { background: var(--green); }
+    .bar-pct { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); min-width: 36px; }
+
+    /* ── SECTIONS GRID ── */
+    .sections-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+    @media (max-width: 660px) { .sections-grid { grid-template-columns: 1fr; } }
+
+    /* ── SECTION CARD ── */
+    .sec-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; transition: border-color .2s, box-shadow .2s;
+    }
+    .sec-card:hover { border-color: var(--border2); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    .sec-card.complete {
+      border-color: rgba(26,122,74,.3);
+      background: linear-gradient(135deg, #fff 0%, rgba(26,122,74,.03) 100%);
+    }
+    .sec-card.complete .sec-num { color: var(--green); }
+
+    .sec-header {
+      display: flex; align-items: center; gap: 12px; padding: 15px 16px;
+      cursor: pointer; user-select: none; transition: background .15s;
+    }
+    .sec-header:hover { background: var(--surface2); }
+
+    .sec-icon { font-size: 18px; flex-shrink: 0; }
+    .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); flex-shrink: 0; }
+    .sec-titles { flex: 1; min-width: 0; }
+    .sec-title { font-size: 13.5px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .sec-sub { font-size: 11.5px; color: var(--muted); margin-top: 1px; font-weight: 400; }
+
+    .sec-prog { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+    .mini-track { width: 46px; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .mini-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .3s; }
+    .mini-pct { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); min-width: 30px; }
+
+    .chevron { color: var(--dim); transition: transform .25s; font-size: 10px; flex-shrink: 0; }
+    .sec-card.open .chevron { transform: rotate(180deg); }
+
+    /* ── SECTION BODY ── */
+    .sec-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+    .sec-card.open .sec-body { display: block; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .1em; margin: 14px 0 8px;
+    }
+
+    /* concept block */
+    .concept-block {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; font-size: 13px;
+    }
+    .concept-block h4 {
+      font-size: 12px; font-weight: 700; color: var(--text);
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em;
+    }
+    .concept-block p { color: var(--muted); font-size: 12.5px; line-height: 1.6; }
+    .concept-block code {
+      font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+      background: rgba(0,0,0,.05); padding: 1px 5px; border-radius: 3px; color: var(--text);
+    }
+    .concept-block pre {
+      font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+      background: rgba(0,0,0,.05); padding: 8px 10px; border-radius: 5px;
+      margin-top: 6px; color: var(--text); overflow-x: auto; line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    /* task */
+    .task-item { display: flex; align-items: flex-start; gap: 11px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .task-item:last-child { border-bottom: none; }
+    .cb {
+      appearance: none; -webkit-appearance: none; width: 18px; height: 18px;
+      border: 1.5px solid var(--border2); border-radius: 5px; background: transparent;
+      cursor: pointer; flex-shrink: 0; margin-top: 3px; transition: all .15s; position: relative;
+    }
+    .cb:hover { border-color: var(--accent); }
+    .cb:checked { background: var(--accent); border-color: var(--accent); }
+    .cb:checked::after {
+      content: '✓'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%); color: white; font-size: 11px; font-weight: 700; line-height: 1;
+    }
+    .task-lbl { font-size: 13.5px; color: var(--text); cursor: pointer; line-height: 1.6; font-weight: 400; }
+    .task-item.done .task-lbl { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--dim); }
+
+    .task-lbl .tag {
+      display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      padding: 1px 6px; border-radius: 3px; margin-right: 4px; vertical-align: middle; font-weight: 500;
+    }
+    .tag.concept { background: rgba(26,111,168,.1); color: var(--sky); }
+    .tag.practice { background: rgba(26,122,74,.1); color: var(--green); }
+    .tag.interview { background: rgba(204,51,51,.1); color: var(--accent); }
+    .tag.bonus { background: rgba(91,63,166,.1); color: var(--purple); }
+
+    /* resources */
+    .res-list { display: flex; flex-wrap: wrap; gap: 7px; }
+    .res-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      color: var(--sky); background: rgba(26,111,168,.07);
+      border: 1px solid rgba(26,111,168,.2); border-radius: 5px;
+      padding: 5px 11px; text-decoration: none; transition: all .15s;
+    }
+    .res-link:hover { background: rgba(26,111,168,.14); border-color: rgba(26,111,168,.35); }
+
+    /* notes */
+    .notes-ta {
+      width: 100%; min-height: 56px; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 7px; color: var(--text);
+      font-family: 'Manrope', sans-serif; font-size: 13px;
+      padding: 10px 13px; resize: vertical; outline: none; transition: border-color .15s;
+    }
+    .notes-ta::placeholder { color: var(--dim); }
+    .notes-ta:focus { border-color: var(--accent-glow); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 28px 0 52px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+    .footer-txt { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .footer-a { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--sky); text-decoration: none; opacity: .8; transition: opacity .15s; }
+    .footer-a:hover { opacity: 1; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="container">
+    <div class="topnav-inner">
+      <a class="back-link" href="index.html">← назад к роадмапу</a>
+      <span class="nav-badge">EPAM Internship Prep</span>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <header class="header">
+    <div class="header-top">
+      <div>
+        <div class="logo">// epam.prep.js — 5 дней → интернатура</div>
+        <h1>5 дней до<br><em>EPAM</em></h1>
+        <p class="tagline">
+          Английский B2 · HTML · CSS · JavaScript · Git · Angular · Node.js · TypeScript<br>
+          Отмечай темы по мере повторения — прогресс сохраняется автоматически.
+        </p>
+      </div>
+      <div class="ring-wrap">
+        <div class="ring-svg-wrap">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle class="ring-track" cx="60" cy="60" r="50"/>
+            <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="50"
+              stroke-dasharray="314.2" stroke-dashoffset="314.2"/>
+          </svg>
+          <div class="ring-center">
+            <div class="ring-pct" id="ringPct">0%</div>
+            <div class="ring-lbl">готово</div>
+          </div>
+        </div>
+        <div class="ring-sub" id="ringSub">0 / 0 тем</div>
+      </div>
+    </div>
+
+    <div class="req-banner">
+      <div class="req-banner-title">// EPAM Requirements — что проверяют</div>
+      <div class="req-tags">
+        <span class="req-tag must">English B2</span>
+        <span class="req-tag must">HTML semantic</span>
+        <span class="req-tag must">CSS box model + layouts</span>
+        <span class="req-tag must">JavaScript core</span>
+        <span class="req-tag must">Git basics</span>
+        <span class="req-tag must">Angular basics</span>
+        <span class="req-tag must">Node.js</span>
+        <span class="req-tag bonus">★ TypeScript</span>
+        <span class="req-tag bonus">★ SASS/LESS</span>
+        <span class="req-tag bonus">★ Cloud (AWS/GCP/Azure)</span>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div>
+        <div class="stat-value"><b id="stDone">0</b></div>
+        <div class="stat-label">Тем пройдено</div>
+      </div>
+      <div>
+        <div class="stat-value"><b id="stDays">0</b><span>/5</span></div>
+        <div class="stat-label">Дней завершено</div>
+      </div>
+      <div>
+        <div class="stat-value"><b id="stPct">0</b><span>%</span></div>
+        <div class="stat-label">Готовность</div>
+      </div>
+      <button class="reset-btn" onclick="resetAll()">↺ сбросить</button>
+    </div>
+  </header>
+
+  <main id="main"></main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-txt">// you got this. EPAM — это только начало 🚀</div>
+      <div class="footer-links">
+        <a class="footer-a" href="https://developer.mozilla.org" target="_blank">MDN</a>
+        <a class="footer-a" href="https://javascript.info" target="_blank">javascript.info</a>
+        <a class="footer-a" href="https://angular.dev" target="_blank">angular.dev</a>
+        <a class="footer-a" href="https://nodejs.org/en/docs" target="_blank">Node.js docs</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════════════════════
+const DAYS = [
+  // ────────────────────────────────────────────────────────────
+  // DAY 1
+  // ────────────────────────────────────────────────────────────
+  {
+    day: 1, cls: 'd1',
+    title: "English B2 + HTML",
+    sub: "Профессиональный английский и структура страниц",
+    icon: "🇬🇧",
+    sections: [
+      {
+        id: 's1_1', icon: '💬', title: 'English B2: IT Vocabulary',
+        sub: 'Слова которые встретишь на интервью',
+        tasks: [
+          { id: 't1', text: '<span class="tag interview">interview</span>Выучить и уметь объяснить по-английски: repository, branch, merge, deploy, framework, component, instance, scope, callback, API, endpoint, middleware, runtime' },
+          { id: 't2', text: '<span class="tag interview">interview</span>Структура ответа на технический вопрос: "I would / I could / In my experience..." — не молчать, говорить с паузами' },
+          { id: 't3', text: '<span class="tag interview">interview</span>Потренировать ответ на: "Tell me about yourself" и "Why do you want to join EPAM?" на английском — 2-3 минуты' },
+          { id: 't4', text: '<span class="tag concept">concept</span>B2 грамматика: Present Perfect vs Past Simple — "I have worked" vs "I worked". Часто путают' },
+          { id: 't5', text: '<span class="tag concept">concept</span>Conditionals (если...): If I had more time, I would... / If you run this code, it will...' },
+          { id: 't6', text: '<span class="tag concept">concept</span>Passive voice в IT: "The data is stored / was processed / will be returned" — очень часто в документации' },
+          { id: 't7', text: '<span class="tag practice">practice</span>Прочитать одну статью на MDN по-английски без перевода. Выписать 10 незнакомых слов' }
+        ],
+        res: [
+          { l: 'BBC Learning English B2', u: 'https://www.bbc.co.uk/learningenglish/english/features/upper-intermediate' },
+          { l: 'IT English Vocabulary', u: 'https://www.vocabulary.com/lists/191275' }
+        ]
+      },
+      {
+        id: 's1_2', icon: '🏗️', title: 'HTML: Document Structure & Semantics',
+        sub: 'Правильная структура = доступность + SEO',
+        tasks: [
+          { id: 't8', text: '<span class="tag interview">interview</span>Объяснить разницу: div vs section vs article vs aside — когда что использовать?' },
+          { id: 't9', text: '<span class="tag interview">interview</span>Что такое DOCTYPE и зачем он нужен?' },
+          { id: 't10', text: '<span class="tag concept">concept</span>meta теги: charset, viewport, description, og:title — что делает каждый' },
+          { id: 't11', text: '<span class="tag concept">concept</span>Формы: input types (text, email, number, checkbox, radio, file), label, fieldset, legend, required, placeholder' },
+          { id: 't12', text: '<span class="tag concept">concept</span>Таблицы: table, thead, tbody, tr, th, td — когда таблица уместна' },
+          { id: 't13', text: '<span class="tag interview">interview</span>Разница между inline и block элементами. Привести примеры каждого' },
+          { id: 't14', text: '<span class="tag interview">interview</span>Что такое accessibility и при чём тут HTML? alt у картинок, aria-label, role' },
+          { id: 't15', text: '<span class="tag practice">practice</span>Написать семантически правильную структуру страницы блога с хедером, навигацией, статьёй и футером' }
+        ],
+        res: [
+          { l: 'MDN: HTML elements reference', u: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element' },
+          { l: 'HTML5 Doctor: Semantic elements', u: 'http://html5doctor.com/element-index/' }
+        ]
+      }
+    ]
+  },
+
+  // ────────────────────────────────────────────────────────────
+  // DAY 2
+  // ────────────────────────────────────────────────────────────
+  {
+    day: 2, cls: 'd2',
+    title: "CSS + SASS",
+    sub: "Стили от базовых концепций до бонусных препроцессоров",
+    icon: "🎨",
+    sections: [
+      {
+        id: 's2_1', icon: '📦', title: 'CSS Core: Box Model, Cascade, Specificity',
+        sub: 'Самое часто спрашиваемое на интервью по CSS',
+        tasks: [
+          { id: 't16', text: '<span class="tag interview">interview</span>Box model: content / padding / border / margin. Разница между box-sizing: content-box и border-box' },
+          { id: 't17', text: '<span class="tag interview">interview</span>Cascade (каскад): порядок применения стилей. User-agent → author → inline → !important' },
+          { id: 't18', text: '<span class="tag interview">interview</span>Specificity: 0-0-0. inline=1-0-0, #id=0-1-0, .class=0-0-1, tag=0-0-1. Уметь посчитать победителя' },
+          { id: 't19', text: '<span class="tag concept">concept</span>Inheritance: какие свойства наследуются (color, font), какие нет (margin, padding, border)' },
+          { id: 't20', text: '<span class="tag interview">interview</span>position: static / relative / absolute / fixed / sticky — разница и примеры использования' },
+          { id: 't21', text: '<span class="tag interview">interview</span>z-index: как работает, что такое stacking context' },
+          { id: 't22', text: '<span class="tag concept">concept</span>display: block / inline / inline-block / none / flex / grid — что делает каждый' }
+        ],
+        res: [
+          { l: 'MDN: Box model', u: 'https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model' },
+          { l: 'Specifishity (визуально)', u: 'https://specifishity.com/' }
+        ]
+      },
+      {
+        id: 's2_2', icon: '📐', title: 'CSS Layouts: Flexbox + Grid',
+        sub: 'Главные инструменты вёрстки',
+        tasks: [
+          { id: 't23', text: '<span class="tag interview">interview</span>Flexbox: flex-direction, justify-content, align-items, flex-wrap, flex-grow, flex-shrink, flex-basis' },
+          { id: 't24', text: '<span class="tag interview">interview</span>CSS Grid: grid-template-columns, grid-template-rows, gap, grid-column/row, fr единица' },
+          { id: 't25', text: '<span class="tag interview">interview</span>Когда flexbox, а когда grid? Flexbox = одна ось, Grid = две оси одновременно' },
+          { id: 't26', text: '<span class="tag concept">concept</span>Responsive design: @media queries, mobile-first подход, единицы: px, %, vw, vh, rem, em' },
+          { id: 't27', text: '<span class="tag concept">concept</span>CSS переменные (custom properties): --color-primary: red; и var(--color-primary)' },
+          { id: 't28', text: '<span class="tag practice">practice</span>Сверстать типичный layout: шапка + 3 колонки + футер, только через Grid' }
+        ],
+        res: [
+          { l: 'CSS-Tricks Flexbox Guide', u: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/' },
+          { l: 'CSS-Tricks Grid Guide', u: 'https://css-tricks.com/snippets/css/complete-guide-grid/' }
+        ]
+      },
+      {
+        id: 's2_3', icon: '⚙️', title: 'SASS/SCSS — бонус ★',
+        sub: 'CSS препроцессор — реально используют на работе',
+        tasks: [
+          { id: 't29', text: '<span class="tag bonus">bonus</span>Что такое SASS/SCSS: расширение CSS с переменными, вложенностью, миксинами. Компилируется в обычный CSS' },
+          { id: 't30', text: '<span class="tag concept">concept</span>Переменные в SCSS: $color-primary: #cc3333; — отличие от CSS var()' },
+          { id: 't31', text: '<span class="tag concept">concept</span>Вложенность: .card { &__title { } &--active { } } — BEM в SCSS очень удобен' },
+          { id: 't32', text: '<span class="tag concept">concept</span>Mixins: @mixin flex-center { display: flex; align-items: center; justify-content: center; } и @include flex-center;' },
+          { id: 't33', text: '<span class="tag concept">concept</span>@extend: наследование стилей от одного селектора другим' },
+          { id: 't34', text: '<span class="tag concept">concept</span>Partials и @import/@use: разбить стили на файлы _variables.scss, _mixins.scss' }
+        ],
+        res: [
+          { l: 'SASS docs: basics', u: 'https://sass-lang.com/guide/' },
+          { l: 'SASS Playground', u: 'https://www.sassmeister.com/' }
+        ]
+      }
+    ]
+  },
+
+  // ────────────────────────────────────────────────────────────
+  // DAY 3
+  // ────────────────────────────────────────────────────────────
+  {
+    day: 3, cls: 'd3',
+    title: "JavaScript + TypeScript",
+    sub: "Ядро языка + типизация которую проверят на тесте",
+    icon: "⚡",
+    sections: [
+      {
+        id: 's3_1', icon: '🔧', title: 'JS: Types, Variables, Functions',
+        sub: 'Базовые концепции — часто в тесте',
+        tasks: [
+          { id: 't35', text: '<span class="tag interview">interview</span>Типы данных: string, number, boolean, null, undefined, object, symbol, bigint. Разница null vs undefined' },
+          { id: 't36', text: '<span class="tag interview">interview</span>typeof: почему typeof null === "object"? (историческая ошибка в JS — знать это!)' },
+          { id: 't37', text: '<span class="tag interview">interview</span>== vs ===: строгое сравнение без приведения типов. Примеры: 0 == false (true), 0 === false (false)' },
+          { id: 't38', text: '<span class="tag interview">interview</span>var / let / const: hoisting у var, temporal dead zone у let/const, переопределение' },
+          { id: 't39', text: '<span class="tag interview">interview</span>Scope: глобальный, функциональный, блочный. Closure: функция помнит переменные откуда была создана' },
+          { id: 't40', text: '<span class="tag concept">concept</span>Функции: function declaration vs expression, arrow function. Разница в this' },
+          { id: 't41', text: '<span class="tag interview">interview</span>this: что это в разных контекстах — в методе объекта, в обычной функции, в стрелочной, в классе' }
+        ],
+        res: [
+          { l: 'javascript.info: основы', u: 'https://javascript.info/first-steps' },
+          { l: 'javascript.info: Closure', u: 'https://javascript.info/closure' }
+        ]
+      },
+      {
+        id: 's3_2', icon: '🔗', title: 'JS: Arrays, Objects, ES6+',
+        sub: 'Методы которые встретишь в каждом проекте',
+        tasks: [
+          { id: 't42', text: '<span class="tag interview">interview</span>Методы массивов: map, filter, reduce, forEach, find, some, every, includes, flat. Знать что возвращает каждый' },
+          { id: 't43', text: '<span class="tag interview">interview</span>Деструктуризация: const { a, b } = obj; const [x, y] = arr; с дефолтными значениями' },
+          { id: 't44', text: '<span class="tag concept">concept</span>Spread (...): копировать, сливать, передавать аргументы. Rest (...args): собирать остаток в массив' },
+          { id: 't45', text: '<span class="tag concept">concept</span>Optional chaining (?.) и nullish coalescing (??): user?.address?.city ?? "Unknown"' },
+          { id: 't46', text: '<span class="tag interview">interview</span>Prototype chain: как работает наследование в JS, чем отличается от классического ООП' },
+          { id: 't47', text: '<span class="tag concept">concept</span>Class: constructor, методы, extends, super — синтаксический сахар над прототипами' }
+        ],
+        res: [
+          { l: 'javascript.info: Arrays', u: 'https://javascript.info/array-methods' },
+          { l: 'javascript.info: Classes', u: 'https://javascript.info/classes' }
+        ]
+      },
+      {
+        id: 's3_3', icon: '⏳', title: 'JS: Async — Promise, async/await, Event Loop',
+        sub: 'Обязательная тема на любом техническом интервью',
+        tasks: [
+          { id: 't48', text: '<span class="tag interview">interview</span>Event Loop: JS однопоточный. Call stack → Web APIs → Callback Queue → Microtask Queue. Порядок выполнения' },
+          { id: 't49', text: '<span class="tag interview">interview</span>Promise: что такое, три состояния (pending/fulfilled/rejected), .then().catch().finally()' },
+          { id: 't50', text: '<span class="tag interview">interview</span>async/await: синтаксический сахар над Promise. try/catch для обработки ошибок' },
+          { id: 't51', text: '<span class="tag concept">concept</span>Promise.all([...]) — ждёт все. Promise.allSettled([...]) — ждёт все, не бросает ошибку. Promise.race — первый' },
+          { id: 't52', text: '<span class="tag concept">concept</span>fetch API: GET запрос, .json(), обработка ошибок (fetch не бросает ошибку при 404!)' },
+          { id: 't53', text: '<span class="tag interview">interview</span>Что выведет: console.log(1); setTimeout(()=>console.log(2),0); Promise.resolve().then(()=>console.log(3)); console.log(4); — ответ: 1, 4, 3, 2' }
+        ],
+        res: [
+          { l: 'javascript.info: Event Loop', u: 'https://javascript.info/event-loop' },
+          { l: 'javascript.info: Promises', u: 'https://javascript.info/promise-basics' },
+          { l: 'Loupe: визуализация Event Loop', u: 'http://latentflip.com/loupe/' }
+        ]
+      },
+      {
+        id: 's3_4', icon: '🔷', title: 'TypeScript — бонус ★ (но реально спросят)',
+        sub: 'Solid TypeScript Knowledge = большой плюс',
+        tasks: [
+          { id: 't54', text: '<span class="tag bonus">bonus</span>Зачем TS: статическая типизация, ошибки до запуска, лучшая поддержка в IDE' },
+          { id: 't55', text: '<span class="tag concept">concept</span>Примитивные типы: string, number, boolean. Массивы: string[] или Array<string>' },
+          { id: 't56', text: '<span class="tag interview">interview</span>interface vs type: оба описывают форму объекта. interface — расширяемый через extends, type — через &' },
+          { id: 't57', text: '<span class="tag concept">concept</span>Generics: function identity<T>(arg: T): T — функция работает с любым типом, но сохраняет его' },
+          { id: 't58', text: '<span class="tag concept">concept</span>Union types: string | number. Intersection types: TypeA & TypeB' },
+          { id: 't59', text: '<span class="tag concept">concept</span>Utility types: Partial<T>, Required<T>, Readonly<T>, Pick<T, K>, Omit<T, K>' },
+          { id: 't60', text: '<span class="tag concept">concept</span>any vs unknown vs never: any отключает проверку, unknown требует проверки типа, never — недостижимый код' }
+        ],
+        res: [
+          { l: 'TypeScript Handbook', u: 'https://www.typescriptlang.org/docs/handbook/intro.html' },
+          { l: 'TS Playground', u: 'https://www.typescriptlang.org/play' },
+          { l: 'Total TypeScript: free tutorials', u: 'https://www.totaltypescript.com/tutorials' }
+        ]
+      }
+    ]
+  },
+
+  // ────────────────────────────────────────────────────────────
+  // DAY 4
+  // ────────────────────────────────────────────────────────────
+  {
+    day: 4, cls: 'd4',
+    title: "Angular + Node.js",
+    sub: "Самые новые темы — Angular с нуля за один день",
+    icon: "🅰️",
+    sections: [
+      {
+        id: 's4_1', icon: '🅰️', title: 'Angular: Концепции и архитектура',
+        sub: 'Angular — фреймворк Google. Совсем другой подход по сравнению с React',
+        tasks: [
+          { id: 't61', text: '<span class="tag concept">concept</span>Что такое Angular: полноценный опinionated фреймворк (в отличие от React — библиотека). Встроены: роутинг, HTTP, формы, DI' },
+          { id: 't62', text: '<span class="tag interview">interview</span>Angular vs React: Angular = фреймворк (всё из коробки), React = библиотека (нужно собирать самому)' },
+          { id: 't63', text: '<span class="tag concept">concept</span>NgModule: @NgModule({ declarations, imports, providers, bootstrap }) — как Angular организует код по модулям' },
+          { id: 't64', text: '<span class="tag interview">interview</span>Component: @Component({ selector, template/templateUrl, styleUrls }) — строительный блок Angular приложения' },
+          { id: 't65', text: '<span class="tag interview">interview</span>Data Binding: Interpolation {{ value }}, Property binding [src]="url", Event binding (click)="handler()", Two-way [(ngModel)]' },
+          { id: 't66', text: '<span class="tag interview">interview</span>Directives: структурные (*ngIf, *ngFor, *ngSwitch) изменяют DOM. Атрибутные ([ngClass], [ngStyle]) изменяют внешний вид' },
+          { id: 't67', text: '<span class="tag concept">concept</span>Pipes: | date, | uppercase, | currency, | async — трансформация данных прямо в шаблоне' }
+        ],
+        res: [
+          { l: 'Angular: Quick Start', u: 'https://angular.dev/tutorials/first-app' },
+          { l: 'Angular docs: components', u: 'https://angular.dev/guide/components' }
+        ]
+      },
+      {
+        id: 's4_2', icon: '💉', title: 'Angular: Services, DI, HTTP, Routing',
+        sub: 'Как Angular общается с сервером и управляет данными',
+        tasks: [
+          { id: 't68', text: '<span class="tag interview">interview</span>Dependency Injection (DI): Angular создаёт и управляет зависимостями. @Injectable() + constructor(private service: MyService)' },
+          { id: 't69', text: '<span class="tag concept">concept</span>Services: @Injectable({ providedIn: "root" }) — синглтон, переиспользуемая бизнес-логика, отдельно от компонента' },
+          { id: 't70', text: '<span class="tag concept">concept</span>HttpClient: import HttpClientModule, затем this.http.get<T>(url) — возвращает Observable (не Promise!)' },
+          { id: 't71', text: '<span class="tag interview">interview</span>Observable vs Promise: Observable из RxJS — ленивый, отменяемый, может выдавать много значений. Promise — одно значение' },
+          { id: 't72', text: '<span class="tag concept">concept</span>RxJS операторы: pipe(), map(), filter(), tap(), catchError(), switchMap() — трансформация потоков данных' },
+          { id: 't73', text: '<span class="tag concept">concept</span>Routing: RouterModule, [routerLink], <router-outlet>, ActivatedRoute для params. Lazy loading через loadChildren' },
+          { id: 't74', text: '<span class="tag concept">concept</span>Lifecycle hooks: ngOnInit() (аналог useEffect[]), ngOnDestroy() (cleanup), ngOnChanges() (при изменении inputs)' }
+        ],
+        res: [
+          { l: 'Angular: Services & DI', u: 'https://angular.dev/guide/di' },
+          { l: 'Angular: HTTP Client', u: 'https://angular.dev/guide/http' },
+          { l: 'RxJS: intro', u: 'https://rxjs.dev/guide/overview' }
+        ]
+      },
+      {
+        id: 's4_3', icon: '📋', title: 'Angular: Forms',
+        sub: 'Два подхода к формам — знать оба',
+        tasks: [
+          { id: 't75', text: '<span class="tag concept">concept</span>Template-driven forms: FormsModule + [(ngModel)] — простые формы, всё в шаблоне, мало контроля' },
+          { id: 't76', text: '<span class="tag interview">interview</span>Reactive forms: ReactiveFormsModule, FormGroup, FormControl, FormBuilder — программный контроль, тестируемы, предпочтительны' },
+          { id: 't77', text: '<span class="tag concept">concept</span>Validators: Validators.required, Validators.email, Validators.minLength(n), custom validator' },
+          { id: 't78', text: '<span class="tag concept">concept</span>Доступ к значению и ошибкам: form.get("email")?.value, form.get("email")?.hasError("required")' }
+        ],
+        res: [
+          { l: 'Angular: Reactive Forms', u: 'https://angular.dev/guide/forms/reactive-forms' }
+        ]
+      },
+      {
+        id: 's4_4', icon: '🟢', title: 'Node.js — основы',
+        sub: 'JavaScript на сервере',
+        tasks: [
+          { id: 't79', text: '<span class="tag interview">interview</span>Что такое Node.js: JavaScript runtime на V8 движке вне браузера. Не многопоточный, но асинхронный через Event Loop' },
+          { id: 't80', text: '<span class="tag interview">interview</span>Зачем Node.js: серверы, CLI инструменты, сборщики (Vite, webpack). npm создан для экосистемы Node' },
+          { id: 't81', text: '<span class="tag concept">concept</span>Модульная система: require() и CommonJS (старый) vs import/export ESModules (новый). Разница' },
+          { id: 't82', text: '<span class="tag concept">concept</span>Встроенные модули: fs (файлы), path (пути), http (сервер), os (система), events' },
+          { id: 't83', text: '<span class="tag concept">concept</span>Создать простой HTTP сервер: http.createServer((req, res) => { res.end("Hello") }).listen(3000)' },
+          { id: 't84', text: '<span class="tag interview">interview</span>Express.js: минималистичный фреймворк для Node. app.get("/", handler), middleware, app.use(), req/res объекты' },
+          { id: 't85', text: '<span class="tag concept">concept</span>Middleware в Express: функция (req, res, next) => { ... next() } — обработка до/после маршрута. Пример: логирование, авторизация' },
+          { id: 't86', text: '<span class="tag concept">concept</span>npm: package.json (dependencies vs devDependencies), scripts, semver версии ^1.2.3 — что означает ^' }
+        ],
+        res: [
+          { l: 'Node.js official docs', u: 'https://nodejs.org/en/docs' },
+          { l: 'Express.js: Getting Started', u: 'https://expressjs.com/en/starter/hello-world.html' },
+          { l: 'Node.js crash course (YouTube)', u: 'https://www.youtube.com/results?search_query=node.js+crash+course+2024' }
+        ]
+      }
+    ]
+  },
+
+  // ────────────────────────────────────────────────────────────
+  // DAY 5
+  // ────────────────────────────────────────────────────────────
+  {
+    day: 5, cls: 'd5',
+    title: "Git + Cloud + Mock Interview",
+    sub: "Git команды + облака + симуляция интервью",
+    icon: "🏁",
+    sections: [
+      {
+        id: 's5_1', icon: '🌿', title: 'Git: Version Control',
+        sub: 'Каждая команда с объяснением зачем она',
+        tasks: [
+          { id: 't87', text: '<span class="tag interview">interview</span>git init, git clone — создать или скопировать репозиторий' },
+          { id: 't88', text: '<span class="tag interview">interview</span>git add, git commit -m "message", git push, git pull — базовый цикл работы каждый день' },
+          { id: 't89', text: '<span class="tag interview">interview</span>git status, git log, git diff — понять что изменилось' },
+          { id: 't90', text: '<span class="tag interview">interview</span>Ветки: git branch, git checkout -b feature/name, git merge, git rebase — разница merge vs rebase' },
+          { id: 't91', text: '<span class="tag concept">concept</span>Pull Request / Merge Request: как работает код-ревью в команде. Что такое PR и зачем он нужен' },
+          { id: 't92', text: '<span class="tag concept">concept</span>git stash: припрятать изменения временно. git stash pop — достать обратно' },
+          { id: 't93', text: '<span class="tag concept">concept</span>.gitignore: что туда добавлять — node_modules, .env, dist, .DS_Store' },
+          { id: 't94', text: '<span class="tag interview">interview</span>Что такое merge conflict и как его разрешить? Объяснить словами процесс' }
+        ],
+        res: [
+          { l: 'Git: интерактивный тренажёр', u: 'https://learngitbranching.js.org/' },
+          { l: 'Git Handbook', u: 'https://guides.github.com/introduction/git-handbook/' }
+        ]
+      },
+      {
+        id: 's5_2', icon: '☁️', title: 'Cloud Basics (AWS/GCP/Azure) — бонус ★',
+        sub: 'Не нужно знать глубоко — нужно понимать концепции',
+        tasks: [
+          { id: 't95', text: '<span class="tag bonus">bonus</span>Что такое облачные вычисления: аренда серверов вместо покупки физического железа' },
+          { id: 't96', text: '<span class="tag bonus">bonus</span>IaaS / PaaS / SaaS: Infrastructure / Platform / Software as a Service — уровни абстракции' },
+          { id: 't97', text: '<span class="tag bonus">bonus</span>AWS основные сервисы: EC2 (виртуальный сервер), S3 (хранилище файлов), Lambda (serverless функции), RDS (базы данных)' },
+          { id: 't98', text: '<span class="tag bonus">bonus</span>GCP аналоги: Compute Engine = EC2, Cloud Storage = S3, Cloud Functions = Lambda' },
+          { id: 't99', text: '<span class="tag bonus">bonus</span>Что такое serverless: код работает без управления сервером, платишь только за вызовы. AWS Lambda, Vercel Functions' },
+          { id: 't100', text: '<span class="tag bonus">bonus</span>CI/CD: Continuous Integration / Continuous Deployment — автоматическая сборка и деплой при каждом push в репозиторий' }
+        ],
+        res: [
+          { l: 'AWS: Cloud Practitioner Essentials (free)', u: 'https://aws.amazon.com/training/learn-about/cloud-practitioner/' },
+          { l: 'Cloud Computing explained simply', u: 'https://www.youtube.com/results?search_query=cloud+computing+explained+simply' }
+        ]
+      },
+      {
+        id: 's5_3', icon: '🎤', title: 'Mock Technical Interview — порепетируй вслух',
+        sub: 'Прочитать мало. Нужно объяснить вслух — это другое',
+        tasks: [
+          { id: 't101', text: '<span class="tag interview">interview</span>Объяснить по-английски: "What is the difference between null and undefined in JavaScript?"' },
+          { id: 't102', text: '<span class="tag interview">interview</span>Объяснить: "How does the event loop work in JavaScript?" — нарисовать схему если нужно' },
+          { id: 't103', text: '<span class="tag interview">interview</span>Объяснить: "What is CSS specificity and how does it work?" — привести пример с числами' },
+          { id: 't104', text: '<span class="tag interview">interview</span>Объяснить: "What is Angular and how is it different from React?"' },
+          { id: 't105', text: '<span class="tag interview">interview</span>Объяснить: "What is Dependency Injection in Angular?"' },
+          { id: 't106', text: '<span class="tag interview">interview</span>Написать по памяти: функция которая принимает массив чисел и возвращает только чётные, удвоенные' },
+          { id: 't107', text: '<span class="tag interview">interview</span>Написать: async функция которая делает fetch запрос и обрабатывает ошибки через try/catch' },
+          { id: 't108', text: '<span class="tag interview">interview</span>Подготовить ответ: "Tell me about a project you built." — конкретно: что, зачем, какой стек, что было сложно' },
+          { id: 't109', text: '<span class="tag practice">practice</span>Пройти тест на английский: grammartest.net или engxam.com — уровень B2' },
+          { id: 't110', text: '<span class="tag practice">practice</span>Найти 5 вопросов по Angular на glassdoor или github interview-questions и ответить на каждый' }
+        ],
+        res: [
+          { l: 'Frontend Interview Questions (GitHub)', u: 'https://github.com/h5bp/Front-end-Developer-Interview-Questions' },
+          { l: 'Angular Interview Questions', u: 'https://github.com/sudheerj/angular-interview-questions' },
+          { l: 'English Grammar Test B2', u: 'https://www.engxam.com/handbook/english-level-test/' }
+        ]
+      }
+    ]
+  }
+];
+
+// ══════════════════════════════════════════════════════════════
+// STORAGE
+// ══════════════════════════════════════════════════════════════
+const CK = (sid, tid) => `epam_${sid}_${tid}`;
+const NK = (sid) => `epam_note_${sid}`;
+const isChecked = (sid, tid) => localStorage.getItem(CK(sid,tid)) === '1';
+const setCheck  = (sid, tid, v) => localStorage.setItem(CK(sid,tid), v?'1':'0');
+const getNote   = (sid) => localStorage.getItem(NK(sid)) || '';
+const saveNote  = (sid, v) => localStorage.setItem(NK(sid), v);
+
+// ══════════════════════════════════════════════════════════════
+// PROGRESS
+// ══════════════════════════════════════════════════════════════
+function countAll() {
+  let total = 0, done = 0, completedDays = 0;
+  DAYS.forEach(d => {
+    let dayTotal = 0, dayDone = 0;
+    d.sections.forEach(s => {
+      s.tasks.forEach(t => {
+        total++; dayTotal++;
+        if (isChecked(s.id, t.id)) { done++; dayDone++; }
+      });
+    });
+    if (dayDone === dayTotal) completedDays++;
+  });
+  return { total, done, completedDays };
+}
+
+function updateGlobal() {
+  const { total, done, completedDays } = countAll();
+  const pct = total ? Math.round(done / total * 100) : 0;
+  const circ = 314.2;
+  document.getElementById('ringFill').style.strokeDashoffset = circ - (pct/100*circ);
+  document.getElementById('ringPct').textContent  = pct + '%';
+  document.getElementById('ringSub').textContent  = `${done} / ${total} тем`;
+  document.getElementById('stDone').textContent   = done;
+  document.getElementById('stDays').textContent   = completedDays;
+  document.getElementById('stPct').textContent    = pct;
+}
+
+function updateSecCard(sec, dayIdx) {
+  const card = document.querySelector(`[data-sec="${sec.id}"]`);
+  if (!card) return;
+  const done = sec.tasks.filter(t => isChecked(sec.id, t.id)).length;
+  const pct  = Math.round(done / sec.tasks.length * 100);
+  card.querySelector('.mini-fill').style.width = pct + '%';
+  card.querySelector('.mini-pct').textContent  = pct + '%';
+  card.classList.toggle('complete', done === sec.tasks.length);
+}
+
+function updateDayBar(dayIdx, d) {
+  let total = 0, done = 0;
+  d.sections.forEach(s => {
+    s.tasks.forEach(t => {
+      total++;
+      if (isChecked(s.id, t.id)) done++;
+    });
+  });
+  const pct = Math.round(done / total * 100);
+  const fill = document.querySelector(`[data-dbar="${dayIdx}"]`);
+  const lbl  = document.querySelector(`[data-dpct="${dayIdx}"]`);
+  if (fill) fill.style.width = pct + '%';
+  if (lbl)  lbl.textContent  = pct + '%';
+}
+
+// ══════════════════════════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════════════════════════
+function render() {
+  const main = document.getElementById('main');
+
+  DAYS.forEach((d, di) => {
+    const dayEl = document.createElement('section');
+    dayEl.className = 'day';
+    dayEl.innerHTML = `
+      <div class="day-header">
+        <div class="day-badge ${d.cls}">${d.icon} ДЕНЬ ${d.day}</div>
+        <div>
+          <div class="day-title">${d.title}</div>
+          <div class="day-sub">${d.sub}</div>
+        </div>
+        <div class="day-prog">
+          <div class="bar-track">
+            <div class="bar-fill ${d.cls}" data-dbar="${di}" style="width:0%"></div>
+          </div>
+          <div class="bar-pct" data-dpct="${di}">0%</div>
+        </div>
+      </div>
+      <div class="sections-grid" id="day${di}grid"></div>
+    `;
+    main.appendChild(dayEl);
+
+    const grid = dayEl.querySelector(`#day${di}grid`);
+
+    d.sections.forEach((s, si) => {
+      const initDone = s.tasks.filter(t => isChecked(s.id, t.id)).length;
+      const initPct  = Math.round(initDone / s.tasks.length * 100);
+      const complete = initDone === s.tasks.length;
+
+      const card = document.createElement('div');
+      card.className = 'sec-card' + (complete ? ' complete' : '');
+      card.dataset.sec = s.id;
+
+      const tasksHTML = s.tasks.map(t => {
+        const ch = isChecked(s.id, t.id);
+        return `<div class="task-item${ch?' done':''}" data-ti>
+          <input type="checkbox" class="cb" data-s="${s.id}" data-t="${t.id}" ${ch?'checked':''}>
+          <label class="task-lbl">${t.text}</label>
+        </div>`;
+      }).join('');
+
+      const resHTML = (s.res||[]).map(r =>
+        `<a class="res-link" href="${r.u}" target="_blank">↗ ${r.l}</a>`
+      ).join('');
+
+      card.innerHTML = `
+        <div class="sec-header">
+          <div class="sec-icon">${s.icon}</div>
+          <div class="sec-titles">
+            <div class="sec-title">${s.title}</div>
+            <div class="sec-sub">${s.sub}</div>
+          </div>
+          <div class="sec-prog">
+            <div class="mini-track">
+              <div class="mini-fill" style="width:${initPct}%"></div>
+            </div>
+            <div class="mini-pct">${initPct}%</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="sec-body">
+          <div class="section-label">// темы и задачи</div>
+          ${tasksHTML}
+          ${resHTML ? `<div class="section-label" style="margin-top:14px">// ресурсы</div><div class="res-list">${resHTML}</div>` : ''}
+          <div class="section-label" style="margin-top:14px">// заметки</div>
+          <textarea class="notes-ta" data-s="${s.id}"
+            placeholder="Что непонятно, что выучила, вопросы для интервью..."
+          >${getNote(s.id)}</textarea>
+        </div>
+      `;
+
+      grid.appendChild(card);
+
+      card.querySelector('.sec-header').addEventListener('click', () => card.classList.toggle('open'));
+
+      card.querySelectorAll('.cb').forEach(cb => {
+        cb.addEventListener('change', () => {
+          setCheck(cb.dataset.s, cb.dataset.t, cb.checked);
+          cb.closest('[data-ti]').classList.toggle('done', cb.checked);
+          updateSecCard(s, di);
+          updateDayBar(di, d);
+          updateGlobal();
+        });
+      });
+
+      card.querySelector('.notes-ta').addEventListener('input', e => {
+        saveNote(e.target.dataset.s, e.target.value);
+      });
+    });
+
+    updateDayBar(di, d);
+  });
+
+  updateGlobal();
+}
+
+function resetAll() {
+  if (!confirm('Сбросить весь прогресс подготовки? Это нельзя отменить.')) return;
+  Object.keys(localStorage).filter(k => k.startsWith('epam_')).forEach(k => localStorage.removeItem(k));
+  location.reload();
+}
+
+render();
+</script>
+</body>
+</html>
