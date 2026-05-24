@@ -7,50 +7,48 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ── LIGHT THEME (default) ── */
+    /* LIGHT — тёплый кремовый, пыльный красный, стальной синий */
     [data-theme="light"] {
-      --bg:         #fdf8f6;
-      --bg2:        #faf4f1;
+      --bg:         #f5f4f0;
+      --bg2:        #f0ede8;
       --surface:    #ffffff;
-      --surface2:   #fdf6f3;
-      --border:     #f0e4df;
-      --border2:    #e2cfc8;
-      --accent:     #d4527a;
-      --accent-s:   #c2436b;
-      --accent-dim: rgba(212,82,122,.09);
-      --accent-glow:rgba(212,82,122,.22);
-      --accent2:    #b07cc6;
-      --sky:        #5b8dd9;
-       --green:      #e49c9c;/* here  */
-      --text:       #2a1f1a;
-      --muted:      #8c7570;
-      --dim:        #ddd0cb;
-      --tag-bg:     #f5ede9;
-      --done-border:#e49c9c;/* here  */
-      --mono-color: #9b4d6e;
+      --surface2:   #f9f8f5;
+      --border:     #e4e2da;
+      --border2:    #d4d1c8;
+      --accent:     #cc3333;
+      --accent-s:   #b02a2a;
+      --accent-dim: rgba(204,51,51,.08);
+      --accent-glow:rgba(204,51,51,.2);
+      --accent2:    #1a6fa8;
+      --sky:        #1a6fa8;
+      --text:       #1a1a1a;
+      --muted:      #6b6860;
+      --dim:        #c8c5bc;
+      --tag-bg:     #ede9e0;
+      --done-border:#cc3333;
+      --mono-color: #cc3333;
     }
 
-    /* ── DARK THEME ── */
+    /* DARK — глубокий нейтральный, те же пыльные оттенки */
     [data-theme="dark"] {
-      --bg:         #1a1020;
-      --bg2:        #1f1428;
-      --surface:    #241830;
-      --surface2:   #2c1e3a;
-      --border:     #3a2848;
-      --border2:    #4d3660;
-      --accent:     #f07bab;
-      --accent-s:   #e06090;
-      --accent-dim: rgba(240,123,171,.1);
-      --accent-glow:rgba(240,123,171,.25);
-      --accent2:    #c49de0;
-      --sky:        #7eb5f5;
-      --green:      #cba5c7;
-      --text:       #f0e8f5;
-      --muted:      #9980aa;
-      --dim:        #4a3560;
-      --tag-bg:     #2e1e3c;
-      --done-border:#cba5c7;
-      --mono-color: #f07bab;
+      --bg:         #141414;
+      --bg2:        #1a1a1a;
+      --surface:    #1e1e1e;
+      --surface2:   #252525;
+      --border:     #2e2e2e;
+      --border2:    #3a3a3a;
+      --accent:     #c94040;
+      --accent-s:   #b03030;
+      --accent-dim: rgba(201,64,64,.1);
+      --accent-glow:rgba(201,64,64,.22);
+      --accent2:    #4a8fc2;
+      --sky:        #4a8fc2;
+      --text:       #e8e6e1;
+      --muted:      #7a7670;
+      --dim:        #3a3a3a;
+      --tag-bg:     #252525;
+      --done-border:#c94040;
+      --mono-color: #c94040;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -210,7 +208,7 @@
     }
     .week-card:hover { border-color: var(--border2); box-shadow: 0 2px 10px rgba(0,0,0,.06); }
     .week-card.complete { border-color: var(--done-border); }
-    .week-card.complete .wk-num { color: var(--green); }
+    .week-card.complete .wk-num { color: var(--accent); }
 
     .week-header {
       display: flex; align-items: center; gap: 11px; padding: 15px 16px;
