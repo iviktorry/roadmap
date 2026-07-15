@@ -7,48 +7,48 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* LIGHT — тёплый кремовый, пыльный красный, стальной синий */
+    /* LIGHT — тёплый крем, карамель, золотисто-жёлтый акцент */
     [data-theme="light"] {
-      --bg:         #f5f4f0;
-      --bg2:        #f0ede8;
-      --surface:    #ffffff;
-      --surface2:   #f9f8f5;
-      --border:     #e4e2da;
-      --border2:    #d4d1c8;
-      --accent:     #cc3333;
-      --accent-s:   #b02a2a;
-      --accent-dim: rgba(204,51,51,.08);
-      --accent-glow:rgba(204,51,51,.2);
-      --accent2:    #1a6fa8;
-      --sky:        #1a6fa8;
-      --text:       #1a1a1a;
-      --muted:      #6b6860;
-      --dim:        #c8c5bc;
-      --tag-bg:     #ede9e0;
-      --done-border:#cc3333;
-      --mono-color: #cc3333;
+      --bg:         #faf3e5;
+      --bg2:        #f5ead2;
+      --surface:    #fffaf0;
+      --surface2:   #f8efd9;
+      --border:     #e9d9b9;
+      --border2:    #ddc69a;
+      --accent:     #dea22e;
+      --accent-s:   #c48d22;
+      --accent-dim: rgba(222,162,46,.12);
+      --accent-glow:rgba(222,162,46,.28);
+      --accent2:    #a8622c;
+      --sky:        #a8622c;
+      --text:       #3a2917;
+      --muted:      #8c7457;
+      --dim:        #ddc9a3;
+      --tag-bg:     #f2e2c2;
+      --done-border:#dea22e;
+      --mono-color: #dea22e;
     }
 
-    /* DARK — глубокий нейтральный, те же пыльные оттенки */
+    /* DARK — глубокий шоколадно-эспрессо, тёплый золотой акцент */
     [data-theme="dark"] {
-      --bg:         #141414;
-      --bg2:        #1a1a1a;
-      --surface:    #1e1e1e;
-      --surface2:   #252525;
-      --border:     #2e2e2e;
-      --border2:    #3a3a3a;
-      --accent:     #c94040;
-      --accent-s:   #b03030;
-      --accent-dim: rgba(201,64,64,.1);
-      --accent-glow:rgba(201,64,64,.22);
-      --accent2:    #4a8fc2;
-      --sky:        #4a8fc2;
-      --text:       #e8e6e1;
-      --muted:      #7a7670;
-      --dim:        #3a3a3a;
-      --tag-bg:     #252525;
-      --done-border:#c94040;
-      --mono-color: #c94040;
+      --bg:         #1d140e;
+      --bg2:        #241a12;
+      --surface:    #291d14;
+      --surface2:   #31241a;
+      --border:     #3d2c1e;
+      --border2:    #4a3626;
+      --accent:     #f0b429;
+      --accent-s:   #d69a1f;
+      --accent-dim: rgba(240,180,41,.12);
+      --accent-glow:rgba(240,180,41,.28);
+      --accent2:    #e0935a;
+      --sky:        #e0935a;
+      --text:       #f3e6d2;
+      --muted:      #a8916f;
+      --dim:        #4a3626;
+      --tag-bg:     #31241a;
+      --done-border:#f0b429;
+      --mono-color: #f0b429;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -330,11 +330,11 @@
   <header class="header">
     <div class="header-top">
       <div>
-        <div class="logo">// frontend.journey.js — start()</div>
-        <h1>4 месяца<br>до <em>джуна</em></h1>
+        <div class="logo">// frontend.journey.js — v2.rebuild()</div>
+        <h1>4 месяца<br>руками, не <em>теорией</em></h1>
         <p class="tagline">
-          HTML → CSS → JS → React + TypeScript → тесты → доступность → работа 🇵🇱<br>
-          Чекбоксы сохраняются автоматически — закрой браузер, всё останется.
+          Верстка на автомате → React + TS → тесты + a11y → Next.js → портфолио → работа 🇵🇱<br>
+          Только то, чего ещё не было. Чекбоксы сохраняются автоматически.
         </p>
       </div>
       <div class="ring-wrap">
@@ -381,7 +381,7 @@
         <a class="footer-a" href="https://developer.mozilla.org" target="_blank">MDN</a>
         <a class="footer-a" href="https://frontendmentor.io" target="_blank">Frontend Mentor</a>
         <a class="footer-a" href="https://justjoin.it" target="_blank">Just Join IT</a>
-        <a class="footer-a small" href="epam-prep.html" target="_blank">epam internship prep ↗</a>
+        <a class="footer-a" href="https://nextjs.org/learn" target="_blank">Next.js Learn</a>
       </div>
     </div>
   </footer>
@@ -415,575 +415,306 @@ function toggleTheme() {
 const ROADMAP = [
   {
     month: 1, campus: false,
-    title: "HTML + CSS — настоящий фундамент",
+    title: "Довести до автоматизма: руки, а не понимание",
     weeks: [
       {
         week: 1,
-        title: "Как работает веб + семантический HTML",
-        sub: "Понять среду прежде чем в ней работать",
+        title: "Верстка без опоры — раунд 1",
+        sub: "Проверка того, что реально умеешь строить, а не узнавать",
         tasks: [
-          "Посмотреть: что происходит когда вводишь адрес сайта — DNS резолвинг, TCP соединение, HTTP запрос, браузер получает HTML и рендерит страницу",
-          "HTTP статус коды: 200 OK, 201 Created, 301 Moved Permanently, 302 Found, 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Internal Server Error — знать что значит каждый",
-          "Разница HEAD, GET, POST — зачем каждый метод и когда используется",
-          "DOCTYPE html — зачем он нужен и что произойдёт если его не писать",
-          "Семантические теги: header (шапка), nav (навигация), main (главный контент), section (смысловой раздел), article (самодостаточный контент), aside (боковая информация), footer (подвал) — зачем каждый и в чём отличие от div",
-          "head тег: что внутри — meta charset, meta viewport, title, link для стилей, script для JS",
-          "Теги для текста: h1–h6 (иерархия важна!), p, strong vs b, em vs i, blockquote, cite, abbr, time",
-          "Ссылки и медиа: a href (абсолютные и относительные), target='_blank' + rel='noopener', img с обязательным alt, figure + figcaption",
-          "Списки: ul + li (маркированный), ol + li (нумерованный), dl + dt + dd (список определений)",
-          "ПРАКТИКА: написать страницу «обо мне» с правильной семантической структурой — без CSS, только HTML",
-          "Продолжить плейлист по верстке на YouTube — видео 1–2"
+          "Взять 3–4 готовых макета (Dribbble, Frontend Mentor challenges, реальные лендинги конкурентов) и сверстать их HTML+CSS с нуля — БЕЗ обучающего видео рядом. Разрешено гуглить конкретную проблему, запрещено смотреть, как это делает кто-то другой шаг за шагом",
+          "Цель раунда — не идеальный пиксель, а тренировка «начал с пустого файла → довёл до готового результата» без чужой руки на клавиатуре",
+          "Каждый макет — сначала Flexbox-раскладка целиком, второй — с использованием Grid там, где это уместнее (карточки, сложные сетки)",
+          "Если застряла на моменте дольше 20–30 минут — это нормальная точка отчёта: записать в заметки, что именно не поддалось, и только тогда идти смотреть решение точечно (а не всё видео целиком)",
+          "Разобрать, где именно текущий CSS «страдает» (твои слова): скорее всего это позиционирование сложных случаев и предсказание поведения flex/grid без DevTools — целенаправленно тренировать именно это",
+          "ПРАКТИКА: адаптивность каждого макета под 3 брейкпоинта (мобильный/планшет/десктоп) без готовых миксинов — руками",
+          "Важно: этот блок и неделя 4 — единственные две недели, которые целиком посвящены чистой верстке. Дальше это не отдельная тема, а фон для всего остального"
         ],
         res: [
-          { l: "MDN: How the web works", u: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works" },
-          { l: "MDN: HTML elements reference", u: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element" },
-          { l: "freeCodeCamp: Responsive Web Design", u: "https://www.freecodecamp.org/learn/2022/responsive-web-design/" }
+          { l: "Frontend Mentor challenges", u: "https://www.frontendmentor.io/challenges" },
+          { l: "MDN: CSS Layout", u: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout" },
+          { l: "CSS Grid Garden (тренажёр)", u: "https://cssgridgarden.com/" }
         ]
       },
       {
         week: 2,
-        title: "CSS: cascade, specificity, inheritance",
-        sub: "То без чего CSS кажется непредсказуемой магией",
+        title: "Адаптивность + BEM + первый деплой",
+        sub: "Первый живой проект в интернете",
         tasks: [
-          "Inheritance (наследование): свойства которые наследуются автоматически — color, font-family, font-size, line-height, text-align, cursor. Которые НЕ наследуются — margin, padding, border, background, width, display",
-          "Ключевое слово inherit: любое свойство можно заставить наследоваться явно — border: inherit",
-          "Cascade (каскад): браузер выбирает стиль в таком порядке — browser defaults → external CSS → внутренний style → inline style → !important (использовать в крайнем случае)",
-          "Specificity (специфичность): считается как три числа [A-B-C]. A = inline styles (1-0-0), B = id селекторы (0-1-0), C = class/pseudo-class/attribute (0-0-1), теги (0-0-1). Побеждает больший",
-          "Примеры: div p { } = 0-0-2, .card { } = 0-0-1, #header { } = 0-1-0, #header .nav a { } = 0-1-2",
-          "Box model: каждый элемент это прямоугольник: content → padding → border → margin",
-          "box-sizing: content-box (дефолт, width = только content) vs border-box (width включает padding и border) — всегда ставить border-box",
-          "Единицы: px, %, em (от родителя), rem (от root html), vw/vh (от вьюпорта)",
-          "DevTools: открыть Elements, кликнуть на элемент → в панели Styles видно применённые стили и откуда они берутся. Зачёркнутые = перебиты другим стилем. Computed — итоговые значения",
-          "ПРАКТИКА: намеренно создать конфликт стилей, разобраться в DevTools кто побеждает и почему",
-          "ПРАКТИКА: взять страницу из прошлой недели, добавить базовые стили — цвет, шрифт, отступы"
+          "Взять один макет из недели 1 (самый сильный результат) и довести его до продакшн-уровня: BEM-именование классов, переменные CSS (custom properties) для цветов/отступов/шрифтов",
+          "Добавить простые CSS-анимации и transitions там, где это уместно — hover-состояния, плавные переходы",
+          "Mobile-first подход: писать базовые стили под мобильный, затем расширять через min-width media queries — а не наоборот",
+          "Оптимизация изображений: srcset/picture для разных экранов, lazy loading (loading=\"lazy\")",
+          "Деплой на Vercel или Netlify — привязать к своему GitHub-репозиторию, чтобы каждый push автоматически обновлял сайт",
+          "Написать нормальный README к проекту: что это, стек, скриншот, ссылка на деплой — это тоже часть портфолио",
+          "ЧЕКПОИНТ: рабочая ссылка на живой сайт + чистый репозиторий с понятной структурой файлов"
         ],
         res: [
-          { l: "MDN: Cascade and inheritance", u: "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance" },
-          { l: "Specifishity (визуально)", u: "https://specifishity.com/" },
-          { l: "Chrome DevTools: CSS", u: "https://developer.chrome.com/docs/devtools/css/" }
+          { l: "BEM: методология", u: "https://en.bem.info/methodology/" },
+          { l: "web.dev: Responsive images", u: "https://web.dev/learn/design/responsive-images" },
+          { l: "Vercel: Deploy", u: "https://vercel.com/docs/deployments/overview" }
         ]
       },
       {
         week: 3,
-        title: "Flexbox + CSS Grid",
-        sub: "Два инструмента которые решают 90% задач по раскладке",
+        title: "Async JS в деле",
+        sub: "Без этого невозможен ни один запрос к серверу — база любого интервью",
         tasks: [
-          "Flexbox — одномерная раскладка (строка ИЛИ колонка). Контейнер: display: flex",
-          "flex-direction: row (дефолт) / column / row-reverse / column-reverse",
-          "justify-content: flex-start, flex-end, center, space-between, space-around, space-evenly — выравнивание по главной оси",
-          "align-items: flex-start, flex-end, center, stretch, baseline — выравнивание по поперечной оси",
-          "flex-wrap: nowrap (дефолт) / wrap / wrap-reverse",
-          "На дочернем элементе: flex-grow (расти), flex-shrink (сжиматься), flex-basis (базовый размер). Сокращение: flex: 1 = flex: 1 1 0",
-          "align-self: переопределить выравнивание для конкретного дочернего элемента",
-          "gap: 16px — отступ между flex/grid элементами (лучше чем margin)",
-          "Пройти Flexbox Froggy целиком — все 24 уровня 🐸",
-          "CSS Grid — двумерная раскладка (строки И колонки одновременно)",
-          "grid-template-columns: repeat(3, 1fr) / 200px 1fr 200px / repeat(auto-fill, minmax(200px, 1fr))",
-          "grid-template-rows: аналогично для строк",
-          "grid-column: 1 / 3 — занять от 1й до 3й линии. grid-column: span 2 — занять 2 колонки",
-          "fr единица: 1fr = одна часть оставшегося пространства",
-          "Разница flexbox vs grid: flex — одна ось, контент управляет размером. Grid — две оси, ты управляешь сеткой",
-          "Пройти CSS Grid Garden — все 28 уровней 🥕",
-          "DevTools: включить grid/flex overlay — посмотреть линии сетки прямо на странице",
-          "ПРАКТИКА: 3 карточки товара в ряд через flexbox с gap и wrap",
-          "ПРАКТИКА: layout страницы (шапка / сайдбар + контент / футер) через grid"
+          "Event Loop: как JS на самом деле выполняет асинхронный код — call stack, callback queue, microtask queue. Понять на конкретных примерах, а не только на диаграмме",
+          "Callbacks → Promises → async/await: пройти путь от одного к другому и понять, зачем каждый следующий шаг решает проблему предыдущего (callback hell)",
+          "Promise.all, Promise.race, Promise.allSettled — когда какой нужен",
+          "fetch API: GET и POST запросы, обработка ошибок (try/catch с async/await, .catch с промисами), проверка response.ok",
+          "ПРАКТИКА: сделать 2 маленьких приложения на чистом JS, которые тянут данные с реального публичного API (например, погода, курсы валют, случайные факты) — без React, чтобы асинхронность не пряталась за хуками",
+          "Обработка состояний загрузки/ошибки/пустого результата — loading / error / empty state, это то, что реально спрашивают на собеседованиях",
+          "Debounce и throttle на практике — например, поиск с задержкой ввода"
         ],
         res: [
-          { l: "Flexbox Froggy 🐸", u: "https://flexboxfroggy.com/" },
-          { l: "CSS Grid Garden 🥕", u: "https://cssgridgarden.com/" },
-          { l: "CSS-Tricks: Flexbox", u: "https://css-tricks.com/snippets/css/a-guide-to-flexbox/" },
-          { l: "CSS-Tricks: Grid", u: "https://css-tricks.com/snippets/css/complete-guide-grid/" },
-          { l: "Kevin Powell YouTube", u: "https://www.youtube.com/@KevinPowell" }
+          { l: "JavaScript.info: Async", u: "https://javascript.info/async" },
+          { l: "MDN: Using Fetch", u: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" },
+          { l: "Loupe (визуализация Event Loop)", u: "http://latentflip.com/loupe/" }
         ]
       },
       {
         week: 4,
-        title: "Адаптивность + BEM + переменные + анимации + деплой",
-        sub: "Первый живой проект в интернете",
+        title: "Git по-настоящему + отладка в DevTools",
+        sub: "Рабочий процесс, который спрашивают на каждом джуновском интервью",
         tasks: [
-          "Mobile-first подход: сначала пишем стили для мобильного, потом расширяем через @media — это правильный порядок",
-          "@media (min-width: 768px) { } — стили для планшета. @media (min-width: 1200px) { } — для десктопа",
-          "Типичные брейкпоинты: 375px (маленький телефон), 480px, 768px (планшет), 1024px, 1280px (десктоп)",
-          "CSS custom properties (переменные): --color-accent: #d4527a; — объявляются в :root { }. Использование: color: var(--color-accent); Можно переопределить внутри любого блока",
-          "Светлая/тёмная тема через data-theme атрибут: [data-theme='dark'] { --color-accent: #f07bab; }",
-          "BEM методология именования классов: .card (блок), .card__title (элемент), .card--featured (модификатор). Зачем: предсказуемость и читаемость кода",
-          "Нельзя делать .card__title__text — максимум два уровня в BEM",
-          "pseudo-elements ::before и ::after — создают элементы без лишнего HTML. Обязательно content: ''",
-          "pseudo-classes :hover, :focus, :active, :nth-child(), :first-child, :last-child, :not()",
-          "transition: all .3s ease — плавные переходы. Лучше указывать конкретное свойство: color .2s ease",
-          "animation + @keyframes: @keyframes slide { from { opacity:0 } to { opacity:1 } }. animation: slide .4s ease both",
-          "transform: scale(), rotate(), translateX/Y() — не вызывает рефлоу, работает быстро",
-          "ПРОЕКТ: одностраничный лендинг с шапкой, секциями, картой, контактами — адаптивный, с анимациями",
-          "Задеплоить на GitHub Pages — файл должен называться index.html 🚀"
+          "Ветки: создание, переключение, merge, разрешение конфликтов вручную (специально создать конфликт и решить его, не через 'accept all')",
+          "git rebase vs git merge — разница и когда что использовать (хотя бы на уровне понимания, не обязательно применять сложные сценарии)",
+          "Commit conventions: понятные сообщения, атомарные коммиты (один коммит — одно изменение)",
+          "Pull Request на практике: даже в своём соло-проекте — сделать ветку, PR, self-review, merge. Это тренирует процесс, который потребуется в команде",
+          "Найти 1–2 open-source репозитория с меткой 'good first issue' и хотя бы попытаться разобраться в issue (не обязательно решить и отправить PR — важно разобраться в чужом коде)",
+          "Chrome DevTools глубже: вкладка Network (смотреть реальные запросы, заголовки, статусы, время загрузки), вкладка Sources для брейкпоинтов и пошаговой отладки JS",
+          "console.table, console.group, debugger statement — инструменты отладки помимо console.log",
+          "Lighthouse в DevTools: прогнать через него один из своих проектов, разобрать метрики performance/accessibility/best practices"
         ],
         res: [
-          { l: "BEM.info: введение", u: "https://getbem.com/introduction/" },
-          { l: "Kevin Powell: Responsive CSS", u: "https://www.youtube.com/watch?v=bn-DQznj10M" },
-          { l: "Animista: CSS анимации", u: "https://animista.net/" },
-          { l: "GitHub Pages", u: "https://pages.github.com/" }
+          { l: "Learn Git Branching (интерактив)", u: "https://learngitbranching.js.org/" },
+          { l: "Chrome DevTools docs", u: "https://developer.chrome.com/docs/devtools/" },
+          { l: "GitHub: good first issues", u: "https://github.com/topics/good-first-issue" }
         ]
       }
     ]
   },
-
   {
     month: 2, campus: false,
-    title: "JavaScript — язык браузера",
+    title: "React и TypeScript — своими руками, не за преподавателем",
     weeks: [
       {
         week: 5,
-        title: "JS основы: типы, переменные, функции, scope, closure",
-        sub: "Фундамент без которого React хуки не поймёшь",
+        title: "React с нуля — самостоятельно",
+        sub: "Разница между «повторяла за преподом» и «написала сама» закрывается здесь",
         tasks: [
-          "Типы данных: примитивные — string, number, bigint, boolean, undefined, null, symbol. Ссылочные — object, array, function",
-          "typeof: typeof 'hello' = 'string', typeof 42 = 'number', typeof null = 'object' (историческая ошибка JS!), typeof undefined = 'undefined', typeof [] = 'object', typeof {} = 'object'",
-          "== (нестрогое, с приведением типов) vs === (строгое, без приведения). Всегда использовать === кроме проверки на null/undefined",
-          "var: hoisting (всплытие), функциональный scope, можно переобъявить. let: блочный scope, temporal dead zone. const: блочный scope, нельзя переприсвоить (но объект можно изменять!)",
-          "Scope (область видимости): глобальный → функциональный → блочный. Переменная видна там где объявлена и внутри вложенных блоков",
-          "Closure (замыкание): функция запоминает переменные из области видимости где она была СОЗДАНА, даже если вызывается снаружи. Это основа useState, useEffect, setTimeout с переменными",
-          "Пример closure: function counter() { let n = 0; return () => ++n; } — каждый вызов вернёт следующее число",
-          "Function declaration vs expression: декларация всплывает, выражение — нет. Arrow function: нет своего this, нет arguments",
-          "this в разных контекстах: в методе объекта = объект. В обычной функции = window/undefined. В стрелочной = this из внешнего контекста. В классе = экземпляр",
-          "DOM: document.querySelector('.card') — первый элемент. querySelectorAll('.item') — все (NodeList). getElementById, getElementsByClassName",
-          "Изменение DOM: element.textContent (текст), element.innerHTML (HTML), element.setAttribute(), element.style.color, element.classList.add/remove/toggle/contains/replace",
-          "Events: addEventListener('click', fn), removeEventListener. event.target — элемент на котором произошло событие. event.preventDefault() — отменить дефолтное поведение (форма не отправится)",
-          "ПРАКТИКА: счётчик с кнопками +/−, кнопкой сброса и минимальным значением 0",
-          "ПРАКТИКА: форма с валидацией — показывать ошибку если поле пустое, прятать при вводе"
+          "Пересобрать основы без чужого кода перед глазами: компоненты, JSX, props, useState — 3 маленьких приложения (счётчик с историей действий, todo-лист, простая викторина) КАЖДОЕ с нуля, ни разу не открывая чужой пример во время написания",
+          "Если не идёт — сначала попытка 15–20 минут, потом можно подсмотреть один конкретный кусок (не весь проект), закрыть и дописать сама",
+          "Разница controlled vs uncontrolled компонентов на примере форм",
+          "Условный рендеринг: тернарные операторы, &&, ранние return — все три варианта, чтобы понимать любой чужой код",
+          "Списки и key prop: почему ключи обязательны и что ломается без них (специально сломать на практике)",
+          "Разбить один существующий большой компонент (свой старый Quiz Application) на более мелкие переиспользуемые — рефакторинг ради тренировки декомпозиции"
         ],
         res: [
-          { l: "javascript.info: основы", u: "https://javascript.info/first-steps" },
-          { l: "javascript.info: Closure", u: "https://javascript.info/closure" },
-          { l: "MDN: Events", u: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events" },
-          { l: "Web Dev Simplified YouTube", u: "https://www.youtube.com/@WebDevSimplified" }
+          { l: "react.dev: Learn", u: "https://react.dev/learn" },
+          { l: "react.dev: Thinking in React", u: "https://react.dev/learn/thinking-in-react" }
         ]
       },
       {
         week: 6,
-        title: "Массивы, объекты, ES6+ синтаксис",
-        sub: "Современный JavaScript которым пишут все",
+        title: "TypeScript в React",
+        sub: "Почти все вакансии джунов в Польше требуют TS — это не опция",
         tasks: [
-          "Создание объекта: литерал {}, new Object(). Доступ: obj.key или obj['key'] (второй — если ключ динамический)",
-          "Методы объекта: Object.keys(obj) = массив ключей, Object.values(obj) = массив значений, Object.entries(obj) = массив пар [key,value], Object.assign({}, obj) = копия, {...obj} = spread копия",
-          "Деструктуризация объекта: const { name, age } = user. С переименованием: const { name: userName } = user. С дефолтом: const { role = 'user' } = user",
-          "Деструктуризация массива: const [first, second, ...rest] = arr. Пропуск: const [,, third] = arr",
-          "Spread оператор (...): копировать массив [...arr], объединить массивы [...a, ...b], копировать объект {...obj, key: value}",
-          "Rest параметры: function sum(...nums) { return nums.reduce((a,b) => a+b, 0) } — собирает остаток аргументов",
-          "Optional chaining: user?.address?.city — вернёт undefined вместо ошибки если user или address = null/undefined",
-          "Nullish coalescing: value ?? 'default' — возвращает правую часть только если левая null или undefined (в отличие от || который реагирует на любой falsy)",
-          "map(): создаёт новый массив применяя функцию к каждому элементу. Не изменяет оригинал",
-          "filter(): создаёт новый массив только из элементов для которых функция вернула true",
-          "reduce(fn, initial): сворачивает массив в одно значение. fn получает (accumulator, currentValue)",
-          "find(): первый элемент который прошёл условие. findIndex(): его индекс",
-          "some(): хотя бы один прошёл условие. every(): все прошли условие",
-          "flat(): разворачивает вложенные массивы. flatMap(): map + flat(1)",
-          "forEach(): перебирает без возврата нового массива — для сайд-эффектов (вставка в DOM, логирование)",
-          "Когда что: нужен новый массив → map/filter. Нужно одно значение → reduce. Нужно проверить → some/every/find",
-          "ПРАКТИКА: To-Do List — добавить, удалить, отметить выполненной, фильтр: все/активные/выполненные",
-          "Сохранить список в localStorage: JSON.stringify перед сохранением, JSON.parse при чтении"
+          "Типизация props через interface/type, опциональные поля (?), дефолтные значения",
+          "Типизация состояния: useState<Type>, когда TS выводит тип сам, а когда нужно указывать явно",
+          "Типизация событий: onChange, onClick, onSubmit — правильные типы событий для инпутов, кнопок, форм",
+          "Дженерики на базовом уровне: зачем они нужны, простой пример на своей функции",
+          "Union types и type narrowing — например, для состояний loading/success/error",
+          "ПРАКТИКА: взять все 3 приложения с прошлой недели и переписать на TypeScript с нуля (не просто добавить any везде — реально типизировать)",
+          "Настроить strict: true в tsconfig и разобраться, какие ошибки он показывает и почему это полезно, а не мешает"
         ],
         res: [
-          { l: "javascript.info: Array methods", u: "https://javascript.info/array-methods" },
-          { l: "javascript.info: Destructuring", u: "https://javascript.info/destructuring-assignment" },
-          { l: "JavaScript30 — 30 проектов бесплатно", u: "https://javascript30.com/" }
+          { l: "TypeScript: React & TS Cheatsheet", u: "https://react-typescript-cheatsheet.netlify.app/" },
+          { l: "typescriptlang.org: Handbook", u: "https://www.typescriptlang.org/docs/handbook/intro.html" }
         ]
       },
       {
         week: 7,
-        title: "Async JS: Event Loop, Promise, fetch, async/await",
-        sub: "Загружаем реальные данные — обязательная тема на любом интервью",
+        title: "useEffect + реальные API + React Router",
+        sub: "Загружаем данные и делаем многостраничное приложение",
         tasks: [
-          "JS однопоточный: только одна операция выполняется в моменте. Асинхронность решает проблему ожидания",
-          "Event Loop: Call Stack (выполнение) → Web APIs (таймеры, fetch, события) → Task Queue (setTimeout) → Microtask Queue (Promise.then) → обратно в Stack. Microtasks всегда РАНЬШЕ tasks",
-          "Классический вопрос: console.log(1); setTimeout(()=>console.log(2),0); Promise.resolve().then(()=>console.log(3)); console.log(4); — ответ: 1, 4, 3, 2",
-          "Promise: объект который представляет результат асинхронной операции. Три состояния: pending (ожидание) → fulfilled (успех) или rejected (ошибка)",
-          "Цепочка: fetch(url).then(r => r.json()).then(data => console.log(data)).catch(err => console.error(err)).finally(() => setLoading(false))",
-          "Promise.all([p1, p2, p3]): ждёт все промисы, отклоняется если хотя бы один упал",
-          "Promise.allSettled([p1, p2]): ждёт все, не отклоняется — возвращает { status, value/reason } для каждого",
-          "Promise.race([p1, p2]): возвращает первый завершившийся промис",
-          "async/await: async делает функцию асинхронной (она всегда возвращает Promise). await приостанавливает выполнение до завершения промиса",
-          "Обработка ошибок с async/await: try { const data = await fetch(url).then(r=>r.json()) } catch(e) { console.error(e) }",
-          "fetch не бросает ошибку при 404/500! Нужно проверять: if (!response.ok) throw new Error(response.status)",
-          "HTTP методы в fetch: GET (дефолт), POST с { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) }",
-          "DevTools Network: смотреть запросы, статус коды, время ответа, заголовки, payload, response — обязательно научиться читать",
-          "ПРАКТИКА: приложение погоды с OpenWeatherMap API — поиск по городу, отображение температуры, иконки, обработка ошибки"
+          "useEffect: зависимости, cleanup-функция, типичные ошибки (бесконечный цикл при неправильном массиве зависимостей — специально вызвать и понять, почему это произошло)",
+          "Загрузка данных с реального API внутри useEffect: loading/error/success состояния (как в неделе 3, но уже через React)",
+          "Custom hook useFetch — вынести повторяющуюся логику загрузки данных в переиспользуемый хук",
+          "React Router: маршруты, вложенные роуты, useParams, useNavigate, защищённые роуты (условный редирект если нет данных)",
+          "ПРАКТИКА: приложение из нескольких страниц, тянущее реальные данные (например, каталог фильмов/книг/рецептов с публичного API) — список → страница деталей по id",
+          "Обработка 404 — страница не найдена при несуществующем маршруте"
         ],
         res: [
-          { l: "javascript.info: Event Loop", u: "https://javascript.info/event-loop" },
-          { l: "javascript.info: Promise", u: "https://javascript.info/promise-basics" },
-          { l: "Loupe: визуализация Event Loop", u: "http://latentflip.com/loupe/" },
-          { l: "OpenWeatherMap API", u: "https://openweathermap.org/api" }
+          { l: "react.dev: useEffect", u: "https://react.dev/reference/react/useEffect" },
+          { l: "React Router docs", u: "https://reactrouter.com/en/main" },
+          { l: "Public APIs (список бесплатных API)", u: "https://github.com/public-apis/public-apis" }
         ]
       },
       {
         week: 8,
-        title: "Git + DevTools: отладка + инструменты разработчика",
-        sub: "Рабочий процесс каждого дня",
+        title: "Context, кастомные хуки, чекпоинт-проект",
+        sub: "Собираем всё вместе — первый полноценный тест того, что реально усвоено",
         tasks: [
-          "git init — создать новый репозиторий. git clone url — скопировать существующий",
-          "git status — что изменилось. git add file или git add . — добавить в staging. git commit -m 'сообщение' — зафиксировать. Сообщения коммитов пишут в настоящем времени: 'Add login form', 'Fix mobile layout'",
-          "git push origin main — отправить на GitHub. git pull — получить изменения",
-          "Ветки: git branch feature/todo — создать. git checkout feature/todo — переключиться. git checkout -b feature/todo — создать и переключиться сразу",
-          "git merge feature/todo — влить ветку в текущую. git rebase — переместить коммиты поверх другой ветки (линейная история)",
-          "Merge conflict: когда в одном файле изменения в разных ветках. Git показывает маркеры <<<< ==== >>>> — выбрать нужную версию, убрать маркеры, сделать коммит",
-          ".gitignore: node_modules/, .env, dist/, .DS_Store, *.log — что не должно попасть в репозиторий",
-          "git stash — спрятать незакоммиченные изменения. git stash pop — достать обратно",
-          "git log --oneline — история коммитов коротко. git diff — что изменилось",
-          "DevTools Sources/Debugger: открыть файл, кликнуть на номер строки → breakpoint. F8 = продолжить, F10 = следующий шаг, F11 = войти в функцию. Смотреть значения переменных в Scope",
-          "DevTools Console: читать stack trace ошибок — первая строка это место ошибки. console.log, console.warn, console.error, console.table(массив), console.dir(объект)",
-          "npm: package.json описывает проект и зависимости. npm install — установить все. npm install lodash — добавить зависимость. dependencies vs devDependencies",
-          "Vite: npm create vite@latest — создать проект. npm run dev — запустить. npm run build — собрать для продакшена",
-          "Задеплоить To-Do List на GitHub Pages + написать README с описанием и скриншотом 🏆"
+          "Context API: когда он нужен, а когда это overkill (prop drilling на 2 уровня — не повод для Context)",
+          "useReducer как альтернатива нескольким useState — на примере более сложного состояния (например, корзина товаров)",
+          "Ещё 1–2 кастомных хука на выбор: useLocalStorage, useDebounce, useToggle — написать самой, не копировать",
+          "Tailwind CSS: если ещё не уверенно — быстро закрыть базовые утилиты (spacing, flex, grid, responsive-префиксы)",
+          "ЧЕКПОИНТ МЕСЯЦА: мини-проект среднего размера, объединяющий всё — React + TS + Router + Context/useReducer + реальный API + Tailwind. Идея: трекер задач, список избранного, простой маркетплейс — что-то с 3+ экранами и настоящей логикой состояния",
+          "Задеплоить этот проект — это будет черновик для будущего портфолио, не обязательно финальный"
         ],
         res: [
-          { l: "Git: интерактивный тренажёр", u: "https://learngitbranching.js.org/" },
-          { l: "Chrome DevTools: Debugger", u: "https://developer.chrome.com/docs/devtools/javascript/" },
-          { l: "Vite: Getting Started", u: "https://vitejs.dev/guide/" }
+          { l: "react.dev: useReducer", u: "https://react.dev/reference/react/useReducer" },
+          { l: "Tailwind CSS docs", u: "https://tailwindcss.com/docs" }
         ]
       }
     ]
   },
-
   {
     month: 3, campus: false,
-    title: "React + TypeScript — современный стек",
+    title: "То, что реально спрашивают на джуна: тесты, доступность, Next.js",
     weeks: [
       {
         week: 9,
-        title: "React основы: компоненты, JSX, props, useState",
-        sub: "Учимся думать компонентами",
+        title: "Тестирование: Jest + React Testing Library",
+        sub: "Отличает «просто верстальщика» от того, кого возьмут в команду с код-ревью",
         tasks: [
-          "Зачем React: при изменении данных вручную обновлять DOM сложно и ненадёжно. React делает это автоматически через Virtual DOM",
-          "Virtual DOM: React хранит копию дерева в памяти. При изменении state — сравнивает (reconciliation) и обновляет только изменившееся в реальном DOM",
-          "Компонент = функция которая принимает props и возвращает JSX. Имя всегда с большой буквы",
-          "JSX: похоже на HTML, но это JavaScript. Отличия: className вместо class, htmlFor вместо for, все атрибуты в camelCase, self-closing теги обязательны (<img />, <br />)",
-          "Одно корневое выражение: нельзя return двух параллельных элементов. Обернуть в div или в Fragment (<> </>)",
-          "Props: данные которые передаём компоненту. Компонент не должен изменять свои props (read-only). Передача: <Card title='Привет' count={42} onClick={fn} />",
-          "Деструктуризация props: function Card({ title, count, onClick }) { } — удобнее чем props.title",
-          "children prop: то что написано между тегами компонента: <Card>Текст внутри</Card>",
-          "Дефолтные значения: function Card({ color = 'pink' }) { }",
-          "useState(initialValue): возвращает [значение, функция_обновления]. Нельзя изменять state напрямую — только через setter функцию",
-          "Re-render: при вызове setState React перерисовывает компонент и всех его дочерних. Поэтому state нужно поднимать туда где он используется несколькими компонентами",
-          "Controlled components: value={state} onChange={e => setState(e.target.value)} — React контролирует значение инпута",
-          "Продолжить плейлист по React (у тебя уже 4 видео — отличный старт! 🎉)",
-          "ПРАКТИКА: форма с инпутом — выводить приветствие в реальном времени ниже",
-          "ПРАКТИКА: компонент карточки + компонент списка карточек — передавать данные через props"
+          "Зачем вообще нужны тесты и что именно тестировать во фронтенде — поведение, а не реализацию (принцип RTL: тестировать так, как это делает пользователь)",
+          "Jest: unit-тесты для чистых функций (например, утилиты форматирования, валидации)",
+          "React Testing Library: render, screen, тестирование рендера компонента, поиск элементов (getByRole, getByText — приоритет ролям, а не data-testid)",
+          "Тестирование пользовательских взаимодействий: fireEvent / userEvent — клик, ввод текста, отправка формы",
+          "Мокирование API-запросов в тестах (MSW или простой jest.mock)",
+          "ПРАКТИКА: написать тесты для 2–3 компонентов из прошлого чекпоинт-проекта — покрыть основную логику, не гнаться за 100% покрытием",
+          "Разобраться в базовом синтаксисе Playwright (E2E) — хотя бы на уровне понимания, что это и зачем, один простой сценарий (например, логин-форма)"
         ],
         res: [
-          { l: "React docs: react.dev/learn", u: "https://react.dev/learn" },
-          { l: "Твой плейлист по React", u: "https://www.youtube.com/playlist?list=PL0MUAHwery4omH4GyVQ-lI2R326tOdN7A" },
-          { l: "Курс Stepik (если берёшь)", u: "https://stepik.org/course/228315/promo" }
+          { l: "Testing Library docs", u: "https://testing-library.com/docs/" },
+          { l: "Jest docs", u: "https://jestjs.io/docs/getting-started" },
+          { l: "Playwright docs", u: "https://playwright.dev/docs/intro" }
         ]
       },
       {
         week: 10,
-        title: "TypeScript прямо сейчас — параллельно с React",
-        sub: "Почти все вакансии джунов в Польше требуют TS",
+        title: "Accessibility (a11y) + формы",
+        sub: "В Европе это спрашивают на интервью и это не формальность",
         tasks: [
-          "Зачем TypeScript: ошибки видно до запуска. IDE подсказывает что передать, что вернёт функция. Код читается легче",
-          "Примитивные типы: string, number, boolean, null, undefined, void (функция ничего не возвращает), never (недостижимый код)",
-          "Объединение типов (union): string | number | null — переменная может быть одним из перечисленных",
-          "Массивы: string[] или Array<string>. Кортежи (tuple): [string, number] — фиксированная длина и типы",
-          "type — псевдоним типа. type UserId = string | number. Можно и для объектов: type User = { name: string; age: number }",
-          "interface — описание формы объекта. interface User { name: string; age: number; role?: string } — знак ? делает поле необязательным",
-          "interface vs type: оба могут описывать объект. interface расширяется через extends, type через & (intersection). Для объектов используй interface, для юнионов — type",
-          "Generics: function identity<T>(arg: T): T — функция работает с любым типом сохраняя его. Array<T>, Promise<T> — примеры встроенных generics",
-          "Utility types: Partial<User> — все поля необязательны. Required<User> — все обязательны. Readonly<User> — нельзя изменить. Pick<User, 'name' | 'age'> — только нужные поля. Omit<User, 'role'> — без указанных полей",
-          "any vs unknown: any отключает проверку типов (избегать!). unknown безопасный — нужно проверить тип перед использованием",
-          "TypeScript в React: типизировать props — interface CardProps { title: string; count: number; onClick: () => void }. Компонент: function Card({ title }: CardProps) { }",
-          "useState с типом: useState<string>(''), useState<User | null>(null), useState<Todo[]>([])",
-          "Переписать компоненты из прошлой недели добавив типы — почувствуй как IDE начинает помогать"
+          "Семантика важнее div-супа: почему button, а не div onClick — что теряется (фокус клавиатурой, скринридеры, роль элемента)",
+          "ARIA-атрибуты по минимуму: aria-label, aria-hidden, aria-live — когда они реально нужны, а когда семантического HTML уже достаточно",
+          "Навигация с клавиатуры: пройти свой чекпоинт-проект только Tab/Enter/Escape, без мыши — найти, где сломано",
+          "Контраст цветов, размеры кликабельных зон — проверить через Lighthouse/axe DevTools",
+          "Формы: правильная связка label+input, обработка ошибок валидации так, чтобы их считывал скринридер (aria-describedby, role='alert')",
+          "Библиотека для форм: React Hook Form — валидация, обработка ошибок, меньше boilerplate чем через useState на каждое поле",
+          "ПРАКТИКА: доработать чекпоинт-проект по всем пунктам выше, прогнать Lighthouse — цель 90+ баллов по accessibility"
         ],
         res: [
-          { l: "TypeScript Handbook", u: "https://www.typescriptlang.org/docs/handbook/intro.html" },
-          { l: "TypeScript in React (react.dev)", u: "https://react.dev/learn/typescript" },
-          { l: "TS Playground", u: "https://www.typescriptlang.org/play" },
-          { l: "Total TypeScript: бесплатные уроки", u: "https://www.totaltypescript.com/tutorials" }
+          { l: "web.dev: Learn Accessibility", u: "https://web.dev/learn/accessibility" },
+          { l: "React Hook Form docs", u: "https://react-hook-form.com/get-started" },
+          { l: "axe DevTools (расширение)", u: "https://www.deque.com/axe/devtools/" }
         ]
       },
       {
         week: 11,
-        title: "useEffect + API в React + React Router",
-        sub: "Загружаем данные и делаем многостраничное приложение",
+        title: "Next.js — основы",
+        sub: "В польских вакансиях React часто идёт в связке с Next.js, это уже не «плюс», а ожидание",
         tasks: [
-          "Side effects: всё что выходит за пределы рендера — запросы к API, подписки, таймеры, работа с DOM напрямую. Для этого — useEffect",
-          "useEffect(fn, deps): fn выполняется после рендера. deps = dependency array",
-          "[] — эффект запускается один раз после монтирования (аналог componentDidMount). Хорошо для первоначальной загрузки данных",
-          "[value] — эффект запускается каждый раз когда value изменяется",
-          "Без второго аргумента — эффект запускается после каждого рендера (осторожно!)",
-          "Cleanup функция: return () => clearInterval(id) — очищает ресурсы когда компонент размонтируется",
-          "Типичный паттерн: загрузка данных с состоянием loading и error: const [data, setData] = useState(null); const [loading, setLoading] = useState(true); const [error, setError] = useState(null)",
-          "Conditional rendering: { loading && <Spinner /> } или { error ? <Error /> : <Content data={data} /> }",
-          "Списки в JSX: {items.map(item => <Card key={item.id} {...item} />)}. key должен быть уникальным и стабильным — не index!",
-          "React Router v6: установить — npm install react-router-dom. Обернуть приложение в <BrowserRouter>",
-          "Маршруты: <Routes><Route path='/' element={<Home />} /><Route path='/films/:id' element={<Film />} /></Routes>",
-          "Навигация: <Link to='/films'>Фильмы</Link> (не перезагружает страницу). <NavLink> — добавляет active класс автоматически",
-          "useParams: const { id } = useParams() — получить динамический параметр из URL",
-          "useNavigate: const navigate = useNavigate(); navigate('/home') — программная навигация",
-          "ПРАКТИКА: приложение с 3+ страницами — список фильмов/книг/персонажей + детальная страница через :id + страница 'О сайте'"
+          "Зачем вообще Next.js поверх React: SSR/SSG/CSR — разница между ними и когда что выбирать",
+          "App Router: файловая маршрутизация, layout.tsx, page.tsx, вложенные роуты",
+          "Server Components vs Client Components — принципиальная разница и когда нужен 'use client'",
+          "Data fetching в Next.js: серверные компоненты тянут данные напрямую, без useEffect",
+          "Динамические роуты ([id]/page.tsx), generateStaticParams для SSG-страниц",
+          "Оптимизация: next/image, next/font — зачем они и что дают по сравнению с обычными тегами",
+          "ПРАКТИКА: пересобрать один из своих прошлых React-проектов на Next.js — это быстрее покажет разницу, чем проект с нуля",
+          "Деплой на Vercel — с Next.js это буквально одна команда, но важно понимать, что происходит"
         ],
         res: [
-          { l: "React: useEffect", u: "https://react.dev/reference/react/useEffect" },
-          { l: "React: Rendering Lists", u: "https://react.dev/learn/rendering-lists" },
-          { l: "React Router v6 docs", u: "https://reactrouter.com/en/main" }
+          { l: "nextjs.org: Learn", u: "https://nextjs.org/learn" },
+          { l: "nextjs.org: App Router docs", u: "https://nextjs.org/docs/app" }
         ]
       },
       {
         week: 12,
-        title: "Tailwind + Context + Custom Hooks + финальный проект",
-        sub: "Всё вместе — полноценное приложение",
+        title: "Пет-проект №1",
+        sub: "Первый по-настоящему серьёзный проект, не учебный — с нуля, самостоятельно",
         tasks: [
-          "Tailwind CSS: utility-first подход — классы прямо в JSX вместо отдельных CSS файлов. Установка: npm install -D tailwindcss (с Vite — по документации)",
-          "Базовые утилиты: p-4 (padding 1rem), m-2, w-full, h-screen, flex, items-center, justify-between, gap-4, rounded-lg, shadow-md",
-          "Цвета: text-gray-700, bg-pink-100, border-pink-300, hover:bg-pink-200 — hover: prefix для состояний",
-          "Responsive в Tailwind: sm:flex md:grid lg:w-1/2 — mobile-first префиксы вместо @media queries",
-          "Dark mode в Tailwind: dark:bg-gray-900 dark:text-white — при добавлении class='dark' на html элемент",
-          "useContext: создать контекст — const ThemeContext = createContext(). Обернуть в Provider: <ThemeContext.Provider value={theme}>. Читать: const theme = useContext(ThemeContext)",
-          "Когда Context: глобальное состояние которое нужно многим компонентам — тема, язык, авторизованный пользователь, корзина",
-          "Zustand (бонус, реально используют): npm install zustand. const useStore = create(set => ({ count: 0, inc: () => set(s => ({count: s.count+1})) }))",
-          "Custom hook: функция с именем начинающимся на use. Может использовать другие хуки. Инкапсулирует логику",
-          "Написать useFetch(url): принимает url, возвращает { data, loading, error } — переиспользуй везде",
-          "useCallback: мемоизировать функцию чтобы не создавалась заново при каждом рендере. Нужно когда передаёшь функцию как prop в React.memo компонент",
-          "useMemo: мемоизировать дорогое вычисление. Нужно редко — только при реальных проблемах с производительностью",
-          "React.memo: обернуть компонент чтобы не перерисовывался если props не изменились",
-          "ПРОЕКТ: полноценное приложение React + TS + Tailwind + внешний API + роутинг. Минимум 3 страницы, адаптивно, с обработкой loading/error",
-          "Задеплоить на Vercel (бесплатно, идеально для React): npm install -g vercel && vercel 🚀"
+          "Выбрать идею с реальной сложностью: не очередной to-do и не клон туториала — что-то с ролями/состояниями/несколькими сущностями (например: платформа отзывов, доска объявлений, трекер привычек с графиками)",
+          "Спроектировать структуру ДО кода: какие страницы, какие сущности, как они связаны — 20 минут на бумаге экономят часы переделок",
+          "Next.js + TypeScript + Tailwind как база стека",
+          "Минимум одна форма с валидацией (React Hook Form) и минимум один экран со списком + деталями (как в неделе 7, но уже на Next.js)",
+          "Написать тесты на ключевую логику (не всё подряд — выбрать то, что реально может сломаться)",
+          "Проверить accessibility и деплоить на Vercel",
+          "README с описанием проблемы, которую решает проект, стеком и скриншотами — это то, что будет читать рекрутер за 20 секунд"
         ],
         res: [
-          { l: "Tailwind + Vite setup", u: "https://tailwindcss.com/docs/guides/vite" },
-          { l: "Zustand docs", u: "https://zustand-demo.pmnd.rs/" },
-          { l: "React: useContext", u: "https://react.dev/reference/react/useContext" },
-          { l: "Vercel", u: "https://vercel.com/" }
+          { l: "Vercel: Deploy Next.js", u: "https://vercel.com/docs/frameworks/nextjs" }
         ]
       }
     ]
   },
-
   {
     month: 4, campus: false,
-    title: "Качество кода + проекты + работа в Польше",
+    title: "Портфолио и выход на рынок",
     weeks: [
       {
         week: 13,
-        title: "Тестирование + ESLint + Prettier",
-        sub: "То что отличает джуна от «просто верстальщика»",
+        title: "Пет-проект №2 — главный проект портфолио",
+        sub: "Сложнее, красивее, запоминающийся — и с реальной пользой",
         tasks: [
-          "Зачем тесты: уверенность что при изменении кода ничего не сломалось. Документация живым кодом. Меньше ручного тестирования",
-          "Unit tests: тестируют одну функцию/компонент изолированно. Integration: несколько частей вместе. E2E (end-to-end): полный сценарий через браузер",
-          "Jest: describe('название группы', () => { it('что должно произойти', () => { expect(fn(input)).toBe(expected) }) })",
-          "Матчеры: toBe (строгое равенство), toEqual (глубокое равенство объектов), toBeTruthy/toBeFalsy, toContain, toThrow, toHaveBeenCalled",
-          "Моки (mocks): jest.fn() — создать фейковую функцию. jest.mock('./api') — заменить модуль. Нужно чтобы тесты не делали реальных запросов",
-          "React Testing Library: render(<Component />) — отрендерить. screen.getByText('Привет') — найти по тексту. screen.getByRole('button') — по роли. screen.getByLabelText('Email') — по label",
-          "fireEvent.click(button) — симулировать клик. userEvent.type(input, 'текст') — более реалистичный ввод",
-          "waitFor(() => expect(...)) — ждать асинхронных изменений DOM",
-          "Написать тесты для 2–3 компонентов из прошлого проекта: рендерится ли, реагирует ли на клик, показывает ли данные",
-          "ESLint: статический анализ кода — находит ошибки и плохие практики. npm install -D eslint. Правила в .eslintrc",
-          "Prettier: форматирование кода автоматически. Убирает споры о стиле в команде. Настроить 'format on save' в VSCode",
-          "Хук pre-commit через husky: перед каждым коммитом автоматически запускать lint и format",
-          "Читать чужой код: найти популярный React репозиторий на GitHub, разобраться в структуре папок, понять архитектурные решения"
+          "Хороший вариант — довести до продакшн-уровня твой проект сайта для мастера маникюра: реальный клиент, реальная задача, это честно и хорошо звучит на собеседовании ('делала для реального клиента', не 'учебный проект')",
+          "Это же можно оформить как практику в универе — уточнить у координатора практики в CDV, засчитывается ли фриланс/самозанятость под 720 часов, и как это задокументировать официально",
+          "Уникальный визуал: тут пригодится Figma-скилл — макет сначала в Figma, затем воплощение в коде (design-to-code, как у тебя уже написано в CV)",
+          "Технически — на уровень сложнее прошлого проекта: например, форма записи с валидацией дат/времени, админ-часть для мастера (пусть простая), адаптация под мобильный в приоритете (это реальный сценарий для локального бизнеса)",
+          "Тесты на ключевые пользовательские сценарии + accessibility-чеклист из недели 10",
+          "Задеплоить на нормальный домен, если возможно — это выглядит серьёзнее чем *.vercel.app для клиентского проекта"
         ],
-        res: [
-          { l: "Jest docs", u: "https://jestjs.io/docs/getting-started" },
-          { l: "React Testing Library", u: "https://testing-library.com/docs/react-testing-library/intro/" },
-          { l: "Prettier", u: "https://prettier.io/" }
-        ]
+        res: []
       },
       {
         week: 14,
-        title: "Accessibility (a11y) + Forms + пет-проект № 1",
-        sub: "Сайты для всех людей — в Европе это важно и спрашивают на интервью",
+        title: "CI/CD, качество кода, чистка проектов",
+        sub: "То, что упоминается почти в каждой вакансии, но редко объясняется джунам",
         tasks: [
-          "Что такое доступность: сайт должен работать для людей с нарушениями зрения, слуха, моторики. Это не только альтруизм — в ЕС это требование закона для ряда сайтов",
-          "Семантика = основа доступности: правильный тег уже добавляет роль и поведение. button реагирует на Enter, nav помечается скринридером как навигация",
-          "ARIA атрибуты: aria-label='Закрыть меню' (когда нет видимого текста), aria-hidden='true' (скрыть декоративный элемент от скринридера), aria-describedby, aria-expanded, role='dialog'",
-          "Keyboard navigation: Tab = следующий фокусируемый элемент. Shift+Tab = предыдущий. Enter/Space = активировать. Escape = закрыть. Весь сайт должен работать без мышки",
-          "Focus management: :focus-visible (видимый фокус-индикатор), tabindex='0' (добавить в tab order), tabindex='-1' (убрать из tab order, но можно фокусировать программно)",
-          "Контрастность: текст на фоне должен иметь соотношение минимум 4.5:1 (normal text) или 3:1 (large text). Проверить старые проекты через WebAIM",
-          "Изображения: alt='' для декоративных (скринридер пропустит). alt='Описание' для информативных. Никогда не alt='image' или alt='картинка'",
-          "Формы: каждый input должен иметь связанный label (через htmlFor/id или вложением). placeholder — не замена label. Сообщение об ошибке — aria-describedby связать с инпутом",
-          "fieldset + legend для группы radiobutton или checkbox",
-          "Форма в React: контролируемые инпуты, валидация при blur и submit, показывать ошибки доступно (role='alert' для динамических сообщений)",
-          "WAVE инструмент: добавить расширение в браузер и проверить свои проекты на ошибки доступности",
-          "ПЕТ-ПРОЕКТ №1: небольшой, но полностью твой. React + TS + Tailwind. Задеплоить на Vercel. README со скриншотами и описанием"
+          "ESLint + Prettier: настроить с нуля в одном из проектов (не просто взять готовый конфиг — понять, за что отвечает каждое правило)",
+          "GitHub Actions: простейший pipeline — запуск тестов и линтера при каждом push/PR (это база CI, дальше можно углублять на реальной работе)",
+          "Пройтись по обоим пет-проектам: убрать console.log, мёртвый код, непонятные названия переменных, проверить консистентность стиля кода",
+          "Обновить README у всех публичных репозиториев — включая старые Quiz Application и BEM-проект из CV",
+          "Убрать/архивировать в GitHub всё, что не хочется показывать рекрутеру (черновики, недоделки без описания)",
+          "Опционально: если осталось время — попробовать решить и отправить PR в один из open-source репозиториев из недели 4"
         ],
         res: [
-          { l: "MDN: Accessibility", u: "https://developer.mozilla.org/en-US/docs/Learn/Accessibility" },
-          { l: "WebAIM Contrast Checker", u: "https://webaim.org/resources/contrastchecker/" },
-          { l: "WAVE: проверить сайт", u: "https://wave.webaim.org/" },
-          { l: "Frontend Mentor", u: "https://www.frontendmentor.io/" }
+          { l: "ESLint docs", u: "https://eslint.org/docs/latest/" },
+          { l: "GitHub Actions docs", u: "https://docs.github.com/en/actions" }
         ]
       },
       {
         week: 15,
-        title: "Пет-проект № 2 — главный проект портфолио",
-        sub: "Сложнее, красивее, запоминающийся",
+        title: "Портфолио-сайт + резюме + профили",
+        sub: "Упаковка того, что уже сделано",
         tasks: [
-          "Стек: React + TypeScript + Tailwind + внешний API + React Router. Опционально: Zustand для state management",
-          "Идея: что-то что решает реальную задачу или интересно тебе лично. Список фильмов, трекер привычек, погодное приложение, кулинарный поиск",
-          "Минимум 3 страницы: главная / список / детальная. Плюс 404 страница (Not Found route в React Router)",
-          "Mobile-first полностью адаптивный дизайн. Проверить на реальном телефоне",
-          "Все состояния обработаны: skeleton/loading, пустой список с призывом к действию, ошибка загрузки с кнопкой retry",
-          "Уникальный дизайн: потрать время на подбор палитры (Coolors), шрифтов (Google Fonts), иконок (Lucide, Heroicons)",
-          "Базовые тесты на ключевые компоненты — хотя бы 5-10 тестов",
-          "SEO: meta title и description на каждой странице через react-helmet-async",
-          "Performance: lazy loading изображений (loading='lazy'), lazy loading маршрутов через React.lazy()",
-          "Задеплоить на Vercel с кастомным доменом если есть. README с GIF демо + стек + ссылки",
-          "Добавить в GitHub и закрепить репозиторий на профиле",
-          "Поделиться ссылкой в LinkedIn — первый шаг к публичности как разработчика 📢"
+          "Собрать личный портфолио-сайт на Next.js — это одновременно и проект в стек, и витрина остальных проектов",
+          "Переписать резюме под реальный уровень: конкретные технологии, конкретные проекты со ссылками на деплой и репозиторий — без размытых формулировок",
+          "GitHub: закрепить (pin) 3–4 лучших репозитория на профиле, у каждого — README с скриншотом",
+          "LinkedIn: обновить опыт/проекты, указать реальный стек (React, TypeScript, Next.js), добавить ссылки на портфолио",
+          "Подготовить короткий питч о себе на английском (30 секунд) — кто ты, что умеешь, что ищешь — пригодится и на созвонах, и в сопроводительных"
         ],
-        res: [
-          { l: "Public APIs (идеи)", u: "https://publicapis.dev/" },
-          { l: "Coolors (палитра)", u: "https://coolors.co/" },
-          { l: "Figma (бесплатный дизайн)", u: "https://www.figma.com/" },
-          { l: "Lucide Icons", u: "https://lucide.dev/" }
-        ]
+        res: []
       },
       {
         week: 16,
-        title: "Портфолио + подготовка к интервью + поиск работы",
-        sub: "Финишная прямая — отправляем первые отклики 🏁",
+        title: "Подготовка к собеседованиям + первые отклики",
+        sub: "Финишная прямая — начинаем действительно откликаться",
         tasks: [
-          "Портфолио сайт: секция 'обо мне' (коротко и конкретно), стек технологий с иконками, 2–3 проекта с живыми ссылками, контактная форма или просто email + LinkedIn",
-          "Каждый проект в портфолио: название, описание (что делает, какую проблему решает), стек, скриншот/gif, ссылки на GitHub и деплой",
-          "LinkedIn: профессиональное фото, headline ('Frontend Developer | React · TypeScript · Tailwind'), about на английском, добавить проекты в секцию Featured",
-          "CV на английском: одна страница. Секции: Contact, Summary (2-3 предложения), Skills (HTML/CSS/JS/React/TS/Git), Projects (2 с ссылками), Education. Используй шрифт с засечками для имени, без засечек для текста",
-          "GitHub профиль: закрепить 2-3 лучших репозитория. Создать репозиторий с именем = твоему username — туда кладёшь README.md профиля (показывается на главной)",
-          "Подготовка к техническому интервью: объяснить вслух — что такое closure, event loop, Virtual DOM, разница let/const/var, как работает useState. Это другое чем просто знать",
-          "Типичные задачки на интервью: написать функцию, найти ошибку в коде, объяснить вывод консоли — потренироваться на CodeWars (kyu 7-6)",
-          "Найти 15-20 вакансий junior frontend в Польше: nofluffjobs.com, justjoin.it, pracuj.pl. Читать требования внимательно",
-          "Сопроводительное письмо: 3-4 предложения — кто ты, почему эта компания, что можешь предложить. На английском или польском",
-          "Отправить первые 5-10 откликов — не ждать 'идеального момента', его не существует 🚀",
-          "Подготовиться к вопросу 'Расскажи о себе' по-английски: 2-3 минуты, структура — кто, что умеешь, что ищешь"
+          "Пройтись по типовым JS/React вопросам на собеседованиях (замыкания, event loop, разница useEffect/useLayoutEffect, зачем key в списках и т.д.) — не зубрить, а уметь объяснить своими словами",
+          "2–3 практических задачи на живое кодирование (LeetCode easy или frontend-специфичные задачи на CodeSandbox/StackBlitz)",
+          "Мок-интервью — хотя бы с одним человеком (однокурсник, знакомый разработчик), важно проговорить ответы вслух, не только знать их",
+          "Составить список компаний: не только стартапы (там джунов почти не берут в 2026), а в первую очередь — аутсорс/аутстафф компании и энтерпрайз (банки, финтех) в Польше, которые исторически держат пайплайн джуниоров",
+          "Начать рассылку: 5–10 целевых откликов в неделю с персонализированным сопроводительным письмом, а не веерная рассылка одного текста",
+          "Параллельно держать в фокусе оформление практики — если рассылка пока не даёт результата, официально задокументированный фриланс-проект (неделя 13) может закрыть требование по часам, пока продолжается поиск полноценной позиции"
         ],
         res: [
-          { l: "No Fluff Jobs: Junior Frontend", u: "https://nofluffjobs.com/pl/frontend" },
-          { l: "Just Join IT", u: "https://justjoin.it/" },
-          { l: "Pracuj.pl", u: "https://www.pracuj.pl/" },
-          { l: "Frontend Interview Questions", u: "https://github.com/h5bp/Front-end-Developer-Interview-Questions" },
-          { l: "CodeWars (практика алгоритмов)", u: "https://www.codewars.com/" }
-        ]
-      }
-    ]
-  },
-
-  // ══════════════════════════════════════════════════════
-  // EPAM CAMPUS — ОСНОВЫ ИТ (вне основного плана)
-  // ══════════════════════════════════════════════════════
-  {
-    month: 'campus', campus: true,
-    title: "EPAM Campus: основы IT — закрываем пробелы",
-    weeks: [
-      {
-        week: 'c1',
-        title: "Basics of Computer Science",
-        sub: "Как работает компьютер изнутри",
-        tasks: [
-          "Железо компьютера: CPU (процессор — выполняет инструкции), RAM (оперативная память — быстрая, временная), HDD/SSD (постоянная память), GPU, материнская плата — как они связаны",
-          "Как процессор выполняет код: машинный код → ассемблер → высокоуровневые языки. Компилятор переводит. Интерпретатор выполняет построчно",
-          "Представление данных: бит = 0 или 1. Байт = 8 бит. Килобайт, Мегабайт, Гигабайт. Почему 1KB = 1024 байт (степень двойки)",
-          "Двоичная система: 1010 = 8+2 = 10 в десятичной. Шестнадцатеричная (hex): 0-9, A-F. #FF0000 = красный в CSS",
-          "ASCII и Unicode: ASCII = 128 символов (только латиница). Unicode = все символы всех языков. UTF-8 кодирует Unicode в байты переменной длины",
-          "Формальные языки: регулярные выражения (regex) — шаблоны для поиска. /^[a-z]+@[a-z]+\\.com$/ = простая проверка email",
-          "Операционная система: управляет ресурсами, обеспечивает абстракцию для программ. Процессы, потоки, файловая система, планировщик",
-          "Файловая система: дерево папок и файлов. Пути: абсолютный (/home/user/file.txt) vs относительный (../folder/file.txt). Расширения файлов",
-          "Командная строка: pwd (где я?), ls / dir (список файлов), cd (сменить папку), mkdir (создать папку), rm (удалить), cp/mv (копировать/переместить)",
-          "Сети и протоколы: IP адрес, TCP/IP стек, DNS (переводит domain → IP), HTTP/HTTPS (протокол веба), порты (80=HTTP, 443=HTTPS, 3000=локал дев)"
-        ],
-        res: [
-          { l: "Crash Course: Computer Science (YouTube)", u: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" },
-          { l: "MDN: How the web works", u: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works" }
-        ]
-      },
-      {
-        week: 'c2',
-        title: "Git углублённо",
-        sub: "Version control от основ до продвинутых сценариев",
-        tasks: [
-          "Что такое version control: отслеживание изменений во времени, возможность вернуться к любой версии, совместная работа без конфликтов",
-          "Distributed vs centralized VCS: Git — distributed (у каждого полная копия истории). SVN — centralized",
-          "Установка и настройка: git config --global user.name 'Имя' и user.email. SSH ключ для GitHub",
-          "Три состояния файлов в Git: working directory (изменено) → staging area (добавлено в git add) → committed (зафиксировано)",
-          "Git internals: blob (содержимое файла), tree (папка), commit (снимок + метаданные + ссылка на родителя). SHA-1 хеш",
-          "Отмена изменений: git restore file (отменить изменения в файле), git reset HEAD file (убрать из staging), git revert commit (новый коммит отменяющий старый), git reset --hard (осторожно!)",
-          "Теги: git tag v1.0.0 — пометить версию. Annotated: git tag -a v1.0.0 -m 'First release'",
-          "git stash list — смотреть все спрятанные изменения. git stash drop — удалить. git stash apply stash@{1} — применить конкретный",
-          "Remotes: git remote -v — список. git remote add origin url. git fetch — скачать без слияния. git pull = fetch + merge",
-          "Branching strategies: Git Flow (main/develop/feature/release/hotfix), GitHub Flow (проще — main + feature branches), Trunk Based Development",
-          "GitHub: Pull Request — предложить изменения, code review, merge. Fork — своя копия чужого репозитория для контрибьюции",
-          "GitHub Actions (базово): CI/CD — автоматический запуск тестов при push в репозиторий"
-        ],
-        res: [
-          { l: "Pro Git (бесплатная книга)", u: "https://git-scm.com/book/ru/v2" },
-          { l: "Git интерактивный тренажёр", u: "https://learngitbranching.js.org/?locale=ru_RU" }
-        ]
-      },
-      {
-        week: 'c3',
-        title: "Базы данных",
-        sub: "Где хранятся данные вашего приложения",
-        tasks: [
-          "Что такое база данных: организованное хранилище данных с быстрым доступом и поиском",
-          "Реляционные БД (SQL): данные в таблицах со связями. MySQL, PostgreSQL, SQLite. Строки (записи) и колонки (поля)",
-          "Базовый SQL: SELECT * FROM users WHERE age > 18 ORDER BY name LIMIT 10",
-          "CRUD в SQL: INSERT INTO, SELECT, UPDATE SET, DELETE FROM",
-          "Связи: one-to-many (один пользователь — много постов), many-to-many (посты — теги через промежуточную таблицу), one-to-one",
-          "JOIN: INNER JOIN (только совпадения), LEFT JOIN (все из левой + совпадения из правой)",
-          "Нереляционные БД (NoSQL): MongoDB (документы/JSON), Redis (ключ-значение, кэш), Firebase (real-time)",
-          "Когда SQL, когда NoSQL: SQL — структурированные данные, сложные запросы, транзакции. NoSQL — гибкая схема, масштабирование, быстрый доступ по ключу",
-          "ORM: библиотека которая позволяет работать с БД через объекты JavaScript вместо SQL. Prisma, Sequelize для Node.js",
-          "Фронтенду БД нужно знать базово: понимать что приходит из API, уметь объяснить структуру данных, знать что такое id, foreign key, JOIN"
-        ],
-        res: [
-          { l: "SQLBolt: интерактивный SQL", u: "https://sqlbolt.com/" },
-          { l: "MongoDB University (бесплатно)", u: "https://university.mongodb.com/" }
-        ]
-      },
-      {
-        week: 'c4',
-        title: "Безопасность + Методологии разработки + Облако",
-        sub: "Контекст в котором работает каждый разработчик",
-        tasks: [
-          "Базовые угрозы веб-безопасности: XSS (Cross-Site Scripting) — вставка вредоносного JS в страницу. Защита: экранировать пользовательский ввод, CSP заголовки",
-          "SQL Injection — вставка SQL кода через форму. Защита: параметризованные запросы, ORM",
-          "CSRF (Cross-Site Request Forgery): сайт заставляет браузер отправить запрос на другой сайт. Защита: CSRF токены, SameSite cookies",
-          "HTTPS: шифрование трафика через TLS. Браузер проверяет сертификат. HTTP → HTTPS редирект",
-          "Хранение паролей: никогда plaintext! Только hash + salt. bcrypt, argon2",
-          "JWT (JSON Web Token): токен авторизации. Header.Payload.Signature. Хранить в httpOnly cookie (не в localStorage!)",
-          "Waterfall: линейный процесс — требования → дизайн → разработка → тест → деплой. Плохо если требования меняются",
-          "Agile: итеративный подход. Короткие циклы (спринты), постоянная обратная связь, адаптация к изменениям",
-          "Scrum: фреймворк Agile. Роли: Product Owner, Scrum Master, Development Team. Артефакты: Product Backlog, Sprint Backlog. Церемонии: Planning, Daily Standup, Review, Retrospective",
-          "Kanban: доска с колонками (Todo / In Progress / Review / Done). Ограничение WIP (Work in Progress). Визуализация потока",
-          "TDD (Test-Driven Development): сначала пишешь тест (красный) → пишешь код чтобы тест прошёл (зелёный) → рефакторинг (голубой). Цикл: Red → Green → Refactor",
-          "Cloud: IaaS (виртуальные серверы — EC2), PaaS (платформа для деплоя — Heroku, Vercel), SaaS (готовый продукт — Gmail). Serverless: Lambda, Vercel Functions",
-          "CI/CD: Continuous Integration — автоматически запускать тесты при каждом коммите. Continuous Deployment — автоматически деплоить если тесты прошли"
-        ],
-        res: [
-          { l: "OWASP Top 10 (основные уязвимости)", u: "https://owasp.org/www-project-top-ten/" },
-          { l: "AWS Cloud Practitioner (free)", u: "https://aws.amazon.com/certification/certified-cloud-practitioner/" },
-          { l: "Scrum Guide (русский)", u: "https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Russian.pdf" }
-        ]
-      },
-      {
-        week: 'c5',
-        title: "Web Overview: как устроен интернет",
-        sub: "Глубже чем 'HTML + CSS + JS'",
-        tasks: [
-          "Как устроен интернет: физическая инфраструктура (кабели, датацентры, маршрутизаторы), магистральные каналы, точки обмена трафиком (IXP)",
-          "IP протокол: каждое устройство имеет IP адрес. IPv4 = 4 числа (192.168.1.1), IPv6 = длиннее. Публичные vs приватные адреса",
-          "DNS (Domain Name System): переводит имена (google.com) в IP адреса. Иерархия: root servers → TLD (.com, .pl) → authoritative servers. TTL — время кэширования",
-          "TCP vs UDP: TCP — надёжный, с подтверждением (HTTP, HTTPS, WebSocket). UDP — быстрый, без гарантии (видео стриминг, игры, DNS)",
-          "HTTP/1.1 vs HTTP/2 vs HTTP/3: H2 — мультиплексирование (несколько запросов по одному соединению). H3 — поверх QUIC/UDP, быстрее",
-          "Заголовки HTTP: Content-Type, Authorization, Cache-Control, CORS (Access-Control-Allow-Origin), Cookie",
-          "CORS: браузер блокирует запросы к другому домену. Сервер должен разрешить через заголовки. Preflight запрос (OPTIONS)",
-          "Браузер изнутри: HTML Parser → DOM tree. CSS Parser → CSSOM tree. DOM + CSSOM → Render tree → Layout → Paint → Composite",
-          "Critical Rendering Path: что нужно загрузить браузеру прежде чем показать страницу. defer и async для скриптов. Preload для критических ресурсов",
-          "Кэширование: Cache-Control: max-age=3600. ETag — уникальный идентификатор версии файла. Service Worker — кэш под контролем JavaScript",
-          "WebSocket: двунаправленное соединение браузер ↔ сервер. Используется для чата, live обновлений, игр",
-          "REST API: архитектурный стиль. Ресурсы (/users, /posts). Методы HTTP как операции (GET=читать, POST=создать, PUT/PATCH=обновить, DELETE=удалить). Stateless"
-        ],
-        res: [
-          { l: "MDN: How the web works", u: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works" },
-          { l: "Web.dev: Performance", u: "https://web.dev/learn/performance" },
-          { l: "HTTP: краш-курс", u: "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview" }
+          { l: "Just Join IT (вакансии PL)", u: "https://justjoin.it/" },
+          { l: "JavaScript interview questions (GitHub)", u: "https://github.com/sudheerj/reactjs-interview-questions" }
         ]
       }
     ]
@@ -993,8 +724,8 @@ const ROADMAP = [
 // ══════════════════════════════════════════════════════
 // STORAGE
 // ══════════════════════════════════════════════════════
-const KEY      = (m,w,i) => `rmv3_m${m}_w${w}_t${i}`;
-const NOTE_KEY = (m,w)   => `rmv3_m${m}_w${w}_note`;
+const KEY      = (m,w,i) => `rmv4_m${m}_w${w}_t${i}`;
+const NOTE_KEY = (m,w)   => `rmv4_m${m}_w${w}_note`;
 const isChecked = (m,w,i) => localStorage.getItem(KEY(m,w,i)) === '1';
 const setCheck  = (m,w,i,v) => localStorage.setItem(KEY(m,w,i), v?'1':'0');
 const getNote   = (m,w) => localStorage.getItem(NOTE_KEY(m,w)) || '';
@@ -1176,7 +907,7 @@ function render() {
 
 function resetAll() {
   if (!confirm('Сбросить весь прогресс? Это нельзя отменить.')) return;
-  Object.keys(localStorage).filter(k=>k.startsWith('rmv3_')).forEach(k=>localStorage.removeItem(k));
+  Object.keys(localStorage).filter(k=>k.startsWith('rmv4_')).forEach(k=>localStorage.removeItem(k));
   location.reload();
 }
 
