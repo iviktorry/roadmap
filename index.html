@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* LIGHT — тёплый крем, карамель, золотисто-жёлтый акцент */
+    /* LIGHT — тёплый крем, шоколадный текст */
     [data-theme="light"] {
       --bg:         #faf3e5;
       --bg2:        #f5ead2;
@@ -21,34 +21,38 @@
       --accent-glow:rgba(222,162,46,.28);
       --accent2:    #a8622c;
       --sky:        #a8622c;
-      --text:       #3a2917;
-      --muted:      #8c7457;
+      --accent2-dim:rgba(168,98,44,.10);
+      --accent2-brd:rgba(168,98,44,.28);
+      --text:       #68421c;
+      --muted:      #885a2b;
       --dim:        #ddc9a3;
       --tag-bg:     #f2e2c2;
       --done-border:#dea22e;
       --mono-color: #dea22e;
     }
 
-    /* DARK — глубокий шоколадно-эспрессо, тёплый золотой акцент */
+    /* DARK — фон 362315, нежно-голубой акцент b2d7ef, без жёлтого */
     [data-theme="dark"] {
-      --bg:         #1d140e;
-      --bg2:        #241a12;
-      --surface:    #291d14;
-      --surface2:   #31241a;
-      --border:     #3d2c1e;
-      --border2:    #4a3626;
-      --accent:     #f0b429;
-      --accent-s:   #d69a1f;
-      --accent-dim: rgba(240,180,41,.12);
-      --accent-glow:rgba(240,180,41,.28);
-      --accent2:    #e0935a;
-      --sky:        #e0935a;
-      --text:       #f3e6d2;
-      --muted:      #a8916f;
-      --dim:        #4a3626;
-      --tag-bg:     #31241a;
-      --done-border:#f0b429;
-      --mono-color: #f0b429;
+      --bg:         #362315;
+      --bg2:        #2d1d11;
+      --surface:    #40291a;
+      --surface2:   #4a3220;
+      --border:     #5a3f28;
+      --border2:    #6b4c32;
+      --accent:     #b2d7ef;
+      --accent-s:   #8fb9d6;
+      --accent-dim: rgba(178,215,239,.14);
+      --accent-glow:rgba(178,215,239,.3);
+      --accent2:    #94bcd9;
+      --sky:        #94bcd9;
+      --accent2-dim:rgba(148,188,217,.12);
+      --accent2-brd:rgba(148,188,217,.3);
+      --text:       #f2e6d3;
+      --muted:      #c0b8ab;
+      --dim:        #5a3f28;
+      --tag-bg:     #4a3220;
+      --done-border:#b2d7ef;
+      --mono-color: #b2d7ef;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -204,6 +208,7 @@
     .week-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 12px; overflow: hidden;
+      display: flex; flex-direction: column;
       transition: border-color .2s, background .3s, box-shadow .2s;
     }
     .week-card:hover { border-color: var(--border2); box-shadow: 0 2px 10px rgba(0,0,0,.06); }
@@ -213,6 +218,7 @@
     .week-header {
       display: flex; align-items: center; gap: 11px; padding: 15px 16px;
       cursor: pointer; user-select: none; transition: background .15s;
+      flex: 1 0 auto;
     }
     .week-header:hover { background: var(--surface2); }
 
@@ -264,11 +270,11 @@
     .res-link {
       display: inline-flex; align-items: center; gap: 4px;
       font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
-      color: var(--sky); background: rgba(91,141,217,.07);
-      border: 1px solid rgba(91,141,217,.2); border-radius: 5px;
+      color: var(--sky); background: var(--accent2-dim);
+      border: 1px solid var(--accent2-brd); border-radius: 5px;
       padding: 4px 10px; text-decoration: none; transition: all .15s;
     }
-    .res-link:hover { background: rgba(91,141,217,.14); border-color: rgba(91,141,217,.35); }
+    .res-link:hover { background: var(--accent2-brd); border-color: var(--accent2); }
 
     /* ── NOTES ── */
     .notes-ta {
@@ -420,15 +426,16 @@ const ROADMAP = [
       {
         week: 1,
         title: "Верстка без опоры — раунд 1",
-        sub: "Проверка того, что реально умеешь строить, а не узнавать",
+        sub: "Метод: 20 минут сама → если не идёт, точечно гуглишь конкретную проблему (не видео целиком) → доводишь сама",
         tasks: [
-          "Взять 3–4 готовых макета (Dribbble, Frontend Mentor challenges, реальные лендинги конкурентов) и сверстать их HTML+CSS с нуля — БЕЗ обучающего видео рядом. Разрешено гуглить конкретную проблему, запрещено смотреть, как это делает кто-то другой шаг за шагом",
-          "Цель раунда — не идеальный пиксель, а тренировка «начал с пустого файла → довёл до готового результата» без чужой руки на клавиатуре",
-          "Каждый макет — сначала Flexbox-раскладка целиком, второй — с использованием Grid там, где это уместнее (карточки, сложные сетки)",
-          "Если застряла на моменте дольше 20–30 минут — это нормальная точка отчёта: записать в заметки, что именно не поддалось, и только тогда идти смотреть решение точечно (а не всё видео целиком)",
-          "Разобрать, где именно текущий CSS «страдает» (твои слова): скорее всего это позиционирование сложных случаев и предсказание поведения flex/grid без DevTools — целенаправленно тренировать именно это",
-          "ПРАКТИКА: адаптивность каждого макета под 3 брейкпоинта (мобильный/планшет/десктоп) без готовых миксинов — руками",
-          "Важно: этот блок и неделя 4 — единственные две недели, которые целиком посвящены чистой верстке. Дальше это не отдельная тема, а фон для всего остального"
+          "Вёрстка №1 (Flexbox): найти макет на Frontend Mentor уровня newbie и сверстать с нуля, без обучающего видео рядом",
+          "Вёрстка №1: адаптив под 3 брейкпоинта (мобильный/планшет/десктоп), без готовых миксинов — руками",
+          "Вёрстка №2 (Flexbox, сложнее): второй макет с карточками/навигацией — на уровень сложнее первого",
+          "Вёрстка №2: адаптив под 3 брейкпоинта",
+          "Вёрстка №3 (Grid): макет со сложной сеткой — там, где Grid уместнее Flexbox",
+          "Вёрстка №3: адаптив под 3 брейкпоинта",
+          "Вёрстка №4: реальный лендинг конкурента/интересного продукта — тот же принцип, без подглядывания",
+          "После каждой вёрстки — 1–2 строки в заметки: что именно не поддалось с первого раза (пригодится для точечного разбора)"
         ],
         res: [
           { l: "Frontend Mentor challenges", u: "https://www.frontendmentor.io/challenges" },
@@ -668,7 +675,10 @@ const ROADMAP = [
           "Тесты на ключевые пользовательские сценарии + accessibility-чеклист из недели 10",
           "Задеплоить на нормальный домен, если возможно — это выглядит серьёзнее чем *.vercel.app для клиентского проекта"
         ],
-        res: []
+        res: [
+          { l: "Figma (дизайн макета)", u: "https://www.figma.com/" },
+          { l: "React Day Picker (форма записи)", u: "https://daypicker.dev/" }
+        ]
       },
       {
         week: 14,
@@ -698,7 +708,9 @@ const ROADMAP = [
           "LinkedIn: обновить опыт/проекты, указать реальный стек (React, TypeScript, Next.js), добавить ссылки на портфолио",
           "Подготовить короткий питч о себе на английском (30 секунд) — кто ты, что умеешь, что ищешь — пригодится и на созвонах, и в сопроводительных"
         ],
-        res: []
+        res: [
+          { l: "Next.js Portfolio Starter Kit", u: "https://vercel.com/templates/next.js/portfolio-starter-kit" }
+        ]
       },
       {
         week: 16,
